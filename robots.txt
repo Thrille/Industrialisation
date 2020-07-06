@@ -1,0 +1,4 @@
+Disallow: /Back-end/*
+Disallow: /Front-end/*
+Disallow: /Database/*
+Disallow: /README.md
