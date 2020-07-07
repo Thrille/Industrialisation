@@ -8,3 +8,4 @@
     define('DB_CHARSET', 'UTF8');
     define('DB_USER', 'user');
     define('DB_PASSWORD', 'password');
+    define('DB_PORT', '3306');

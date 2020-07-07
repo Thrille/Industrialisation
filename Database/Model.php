@@ -6,7 +6,7 @@ abstract class Model{
 
   //instanciation connexion bdd
   private static function setBdd(){
-    self::$bdd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+    self::$bdd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
     self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
   }
 
