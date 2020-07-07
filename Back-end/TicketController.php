@@ -1,5 +1,5 @@
 <?php
-require_once '../Database/TicketsManager.php';
+require_once(__root__.'/Database/TicketManager.php');
 
 class TicketController{
 
@@ -27,14 +27,14 @@ class TicketController{
     //Mise à jour du ticket
     static function Update($id, array $param){      
         self::$_ticketManager = new TicketsManager;
-        $ticket = self::$_ticketManager->Update($id,$param);
+        $ticket = self::$_ticketManager->updateTicket($id,$param);
         return $ticket;        
     }
 
     //Suppression du ticket
     static function Delete($id){
         self::$_ticketManager = new TicketsManager;
-        $bDelete = self::$_ticketManager->Delete($id);
+        $bDelete = self::$_ticketManager->deleteTicket($id);
         return $bDelete;
     }
 }

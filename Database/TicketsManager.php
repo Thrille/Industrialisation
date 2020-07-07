@@ -1,6 +1,6 @@
 <?php
-require_once('Model.php');
-require_once('Ticket.php');
+require_once(__root__.'/Database/Model.php');
+require_once(__root__.'/Database/Ticket.php');
 class TicketsManager extends Model{
 
   //récupère tous les tickets
