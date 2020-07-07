@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="src/style/layout.css">
         <link rel="stylesheet" href="src/style/theme.css">
+        <link rel="icon" href="src/asset/favicon.ico">
+        <title>Ticket</title>
     </head>
     <body>
         <div id="test">
@@ -16,10 +18,24 @@
             </div>
             <textarea id="debug"></textarea>
         </div>
-        <div id="app">
-            
-        </div>
+
+        <header>
+            <nav>
+                <img src="src/asset/logo.jpg" alt="logo">
+                <button>Créer un ticket</button>
+            </nav>
+        </header>
+        <main>
+            <section id="ticket-list">
+                <nav><!-- liste des tickets --></nav>
+            </section>
+            <section></section>
+            <section id="new-ticket"></section>
+        </main>
+        <footer>
+            <div>Groupe de Vincent Mandrelier, Flavien Racoeur et Lug Eslan</div>
+        </footer>
         <script src="index.js"></script>
-        <script src="lib/script/app.js"></script>
+        <script src="lib/script/App.js"></script>
     </body>
 </html>
