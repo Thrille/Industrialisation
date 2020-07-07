@@ -2,5 +2,10 @@ language: php
 php:
   - '7.4.0'
 
+branches:
+  only:
+    - master
+    - Integration
+
 script:
   - echo Integration termine
