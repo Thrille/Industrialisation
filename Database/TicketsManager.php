@@ -22,7 +22,7 @@ class TicketsManager extends Model{
     if (is_array($var)) {
       return new $this->sModel($var);
     }
-    
+
     return NULL;
   }
 
@@ -31,10 +31,10 @@ class TicketsManager extends Model{
 
     $req = $this->getBdd()->prepare('UPDATE TICKET SET T_NUMERO = :number, T_DESCRIPTION = :description, MATERIEL_M_ID = :deviceCode, ETAT_E_CODE = :deviceCode WHERE T_ID = :id;');
     $req->execute(array(
-      ':number' => $param['number'], 
-      ':description' => $param['description'], 
-      ':deviceCode' => $param['deviceCode'], 
-      ':stateCode' => $param['stateCode'], 
+      ':number' => $param['number'],
+      ':description' => $param['description'],
+      ':deviceCode' => $param['deviceCode'],
+      ':stateCode' => $param['stateCode'],
       ':id' => $id
     ));
     return $this->getTicket($id);
@@ -42,7 +42,7 @@ class TicketsManager extends Model{
 
   //supprime le ticket avec l'id correspondant + retourne un true si supression effectué et false sinon
   public function deleteTicket(int $id){
-    $req = $this->getBdd()->prepare("DELETE FROM INTERVENTION WHERE TICKET_T_ID = :id; DELETE FROM TICKET WHERE T_ID = :id;");
+    $req = $this->getBdd()->prepare('DELETE FROM INTERVENTION WHERE TICKET_T_ID = :id; DELETE FROM TICKET WHERE T_ID = :id;');
     $count = $req->execute(array(
       ':id' => $id
     ));
@@ -58,10 +58,10 @@ class TicketsManager extends Model{
   public function createTicket(array $param){
     $req = $this->getBdd()->prepare('INSERT INTO TICKET (T_NUMERO, T_DATE_SAISIE, T_DESCRIPTION, MATERIEL_M_ID, ETAT_E_CODE) VALUES (:number, now(), :description, :deviceCode, :stateCode);');
     $count = $req->execute(array(
-      ':number' => $param['number'], 
-      ':description' => $param['description'], 
-      ':deviceCode' => $param['deviceCode'], 
-      ':stateCode' => $param['stateCode'], 
+      ':number' => $param['number'],
+      ':description' => $param['description'],
+      ':deviceCode' => $param['deviceCode'],
+      ':stateCode' => $param['stateCode']
     ));
     if($count != 0){
 
