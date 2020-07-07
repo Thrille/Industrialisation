@@ -26,7 +26,9 @@ class TicketController{
 
     //Mise à jour du ticket
     static function Update($id, array $param){      
-
+        self::$_ticketManager = new TicketsManager;
+        $ticket = self::$_ticketManager->Update($id,$param);
+        return $ticket;        
     }
 
     //Suppression du ticket
@@ -34,10 +36,3 @@ class TicketController{
 
     }
 }
-
-$tickets = TicketController::GetAllTickets();
-foreach ($tickets as $ticket) {
-    echo $ticket->getT_DESCRIPTION();
-}
-echo '<br/>';
-echo TicketController::GetTicket(2)['T_DESCRIPTION'];
