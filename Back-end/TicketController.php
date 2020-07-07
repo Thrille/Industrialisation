@@ -13,13 +13,15 @@ class TicketController{
     // Récupération de tous les ticket
     static function GetAllTickets(){
         self::$_ticketsManager = new TicketsManager;
-        $tickets = self::$_ticketsManager->getTickets();    
+        $tickets = self::$_ticketsManager->getAllTickets();    
         return $tickets;    
     }
 
     //Récupération d'un ticket précis
     static function GetTicket($id){
-
+        self::$_ticketsManager = new TicketsManager;
+        $ticket = self::$_ticketsManager->getTicket($id);
+        return $ticket;
     }
 
     //Mise à jour du ticket
@@ -33,4 +35,9 @@ class TicketController{
     }
 }
 
-TicketController::GetAllTickets();
+$tickets = TicketController::GetAllTickets();
+foreach ($tickets as $ticket) {
+    echo $ticket->getT_DESCRIPTION();
+}
+echo '<br/>';
+echo TicketController::GetTicket(2)['T_DESCRIPTION'];
