@@ -1,6 +1,7 @@
 <?php
-  class Materiel{
-    private $M_ID, $M_LIBELLE;
+require_once __ROOT__.'/Database/Entity.php';
+  class Materiel extends Entity{
+    protected $M_ID, $M_LIBELLE;
 
     public function __construct(array $data){
       $this->hydrate($data);

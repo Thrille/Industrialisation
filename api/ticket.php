@@ -60,7 +60,7 @@
             // la requete est valide
             if ($bValid) {
 
-                echo json_encode(TicketController::GetTicket($iId));
+                echo TicketController::GetTicket($iId);
             }
             else {
 
@@ -120,7 +120,7 @@
                 );
 
                 // on lance l'action de création du ticket
-                echo json_encode(TicketController::Create($aParam));
+                echo TicketController::Create($aParam);
             }
             else {
 
@@ -190,7 +190,7 @@
                 );
 
                 // on met à jour le ticket via le controlleur
-                echo json_encode(TicketController::Update($iId, $aParam));
+                echo TicketController::Update($iId, $aParam);
             }
             else {
                 
@@ -215,7 +215,7 @@
             if ($bValid) {
 
                 // on lance le controleur de suptression du ticket
-                echo json_encode(TicketController::Delete($iId));
+                echo TicketController::Delete($iId);
             }
             else {
                 

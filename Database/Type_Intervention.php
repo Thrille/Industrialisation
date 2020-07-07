@@ -1,7 +1,7 @@
 <?php
 require_once __ROOT__.'/Database/Entity.php';
-class Etat extends Entity{
-  protected $E_CODE, $E_LIBELLE;
+class Type_Intervention extends Entity{
+  protected $TI_CODE, $TI_LIBELLE;
 
   public function __construct(array $data){
     $this->hydrate($data);
@@ -18,12 +18,12 @@ class Etat extends Entity{
   }
 
   //GETTERS
-  public function getE_CODE(){
-    return $this->E_CODE;
+  public function getTI_CODE(){
+    return $this->TI_CODE;
   }
 
-  public function getE_LIBELLE(){
-    return $this->E_LIBELLE;
+  public function getTI_LIBELLE(){
+    return $this->TI_LIBELLE;
   }
 }
 ?>

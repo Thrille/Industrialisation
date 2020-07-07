@@ -19,7 +19,8 @@
             header('Content-Type: application/json');
 
             // On renvois les informations correspondant à la liste des ticket
-            echo json_encode(TicketController::GetAllTickets());
+            echo TicketController::GetAllTickets();
+
             break;
         default:
             // si la méthode n'est pas GET on renvois le code erreur "405 Method Not Allowed"
