@@ -1,7 +1,10 @@
 <?php
 require_once __ROOT__.'/Database/TicketsManager.php';
+require_once __ROOT__.'/Back-end/Helpers.php';
 
 class TicketController{
+
+    use Helpers;
 
     private static $_ticketsManager;
 
@@ -15,8 +18,9 @@ class TicketController{
     // Récupération de tous les ticket
     static function GetAllTickets(){
         self::$_ticketsManager = new TicketsManager;
-        $tickets = self::$_ticketsManager->getAllTickets();    
-        return $tickets;    
+        $tickets = self::$_ticketsManager->getAllTickets();
+
+        return Helpers::CollectionToJSON($tickets);
     }
 
     //Récupération d'un ticket précis

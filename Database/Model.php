@@ -20,12 +20,14 @@ abstract class Model{
 
   protected function getAll($table, $obj){
     $var = [];
+    $aResult = array();
     $req = $this->getBdd()->prepare('SELECT * FROM ' .$table);
     $req->execute();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
-      $var[] = new $obj($data);
-      $var[]->toJSON();
+
+      $var[] = new $obj($data);  
     }
+
     return $var;
     $req->closeCursor();
   }
