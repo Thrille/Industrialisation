@@ -7,7 +7,9 @@ class TicketController{
 
     // Création d'un nouveau ticket
     static function Create(array $param){  
-              self::$_ticketManager = new TicketManager;
+        self::$_ticketManager = new TicketManager;
+        $bCreate = self::$_ticketManager->createTicket($param);
+        return $bCreate;
     }
 
     // Récupération de tous les ticket
