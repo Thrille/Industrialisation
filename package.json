@@ -1,0 +1,25 @@
+{
+  "name": "industrialisation",
+  "version": "1.0.0",
+  "description": "Projet d'industrialisation",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thrille/Industrialisation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thrille/Industrialisation/issues"
+  },
+  "homepage": "https://github.com/Thrille/Industrialisation#readme"
+}
