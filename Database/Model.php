@@ -4,7 +4,7 @@ abstract class Model{
 
   //instanciation connexion bdd
   private static function setBdd(){
-    self::$bdd = new PDO('mysql:host=localhost;dbname=ticketing;charset=utf8', 'root', '');
+    self::$bdd = new PDO('mysql:host=localhost;dbname=ticketing;port=3308;charset=utf8', 'root', '');
     self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
   }
 
@@ -18,7 +18,7 @@ abstract class Model{
 
   protected function getAll($table, $obj){
     $var = [];
-    $req = $this->getBdd()->prepare('SELECT * FROM' .table);
+    $req = $this->getBdd()->prepare('SELECT * FROM ' .$table);
     $req->execute();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
       $var[] = new $obj($data);
