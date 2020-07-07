@@ -1,7 +1,8 @@
 <?php
-// On importe les références pour appeler les controller, ce qui permet de déclancher les actions back-end
-    require_once (dirname(__FILE__).'/../Back-end/TicketController.php');
-    use Controller\TicketController;
+    // On importe les références pour appeler les controller, ce qui permet de déclancher les actions back-end
+    @define('__ROOT__', dirname(__DIR__));
+
+    require_once __ROOT__.'/Back-end/TicketController.php';
 
     // Cette fonction permet de lire le contenu de la requète lorsque $_GET, $_POST et $_REQUEST ne permettent pas de l'obtenir
     function ReadRequestBody() {
