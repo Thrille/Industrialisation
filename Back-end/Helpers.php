@@ -16,7 +16,6 @@ trait Helpers {
           }
         }
     
-        return $aResultCollection;
         return json_encode($aResultCollection);
       }
 }
