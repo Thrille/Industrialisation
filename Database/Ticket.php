@@ -1,5 +1,6 @@
 <?php
-class Ticket{
+require_once __ROOT__.'/Database/Entity.php';
+class Ticket extends Entity{
   private $T_ID, $T_NUMERO, $T_DATE_SAISIE, $T_DESCRIPTION, $MATERIEL_M_ID, $ETAT_E_CODE;
 
   public function __construct(array $data){

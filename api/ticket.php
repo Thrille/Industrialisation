@@ -1,7 +1,8 @@
 <?php
-// On importe les références pour appeler les controller, ce qui permet de déclancher les actions back-end
-    require_once (dirname(__FILE__).'/../Back-end/TicketController.php');
-    use Controller\TicketController;
+    // On importe les références pour appeler les controller, ce qui permet de déclancher les actions back-end
+    @define('__ROOT__', dirname(__DIR__));
+
+    require_once __ROOT__.'/Back-end/TicketController.php';
 
     // Cette fonction permet de lire le contenu de la requète lorsque $_GET, $_POST et $_REQUEST ne permettent pas de l'obtenir
     function ReadRequestBody() {
@@ -33,6 +34,9 @@
         die();
     }
 
+    // on met à jour le header pour préciser le type de données renvoyer (du JSON pour conserver le type de l'appel)
+    header('Content-Type: application/json');
+
     // L'application adopte des comportements différents en fonction de la méthode HTTP utilisé
     switch($_SERVER['REQUEST_METHOD']) {
 
@@ -56,10 +60,7 @@
             // la requete est valide
             if ($bValid) {
 
-                // on met à jour le header pour préciser le type de données renvoyer (du JSON pour conserver le type de l'appel)
-                header('Content-Type: application/json');
-
-                echo TicketController::GetTicket($iId);
+                echo json_encode(TicketController::GetTicket($iId));
             }
             else {
 
@@ -118,12 +119,8 @@
                     'deviceCode'    =>  $sTicketDeviceCode
                 );
 
-                // on met à jour le header pour préciser le type de données renvoyer (du JSON pour conserver le type de l'appel)
-                header('Content-Type: application/json');
-
-
                 // on lance l'action de création du ticket
-                echo TicketController::Create($aParam);
+                echo json_encode(TicketController::Create($aParam));
             }
             else {
 
@@ -192,11 +189,8 @@
                     'deviceCode'    =>  $sTicketDeviceCode
                 );
 
-                // on met à jour le header pour préciser le type de données renvoyer (du JSON pour conserver le type de l'appel)
-                header('Content-Type: application/json');
-
                 // on met à jour le ticket via le controlleur
-                echo TicketController::Update($iId, $aParam);
+                echo json_encode(TicketController::Update($iId, $aParam));
             }
             else {
                 
@@ -220,11 +214,8 @@
 
             if ($bValid) {
 
-                // on met à jour le header pour préciser le type de données renvoyer (du JSON pour conserver le type de l'appel)
-                header('Content-Type: application/json');
-
                 // on lance le controleur de suptression du ticket
-                echo TicketController::Delete($iId);
+                echo json_encode(TicketController::Delete($iId));
             }
             else {
                 

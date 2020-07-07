@@ -1,10 +1,12 @@
 <?php
+require_once(dirname(__FILE__).'/.env.php');
+
 abstract class Model{
   private static $bdd;
 
   //instanciation connexion bdd
   private static function setBdd(){
-    self::$bdd = new PDO('mysql:host=localhost;dbname=ticketing;charset=utf8', 'root', '');
+    self::$bdd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
     self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
   }
 
@@ -18,10 +20,11 @@ abstract class Model{
 
   protected function getAll($table, $obj){
     $var = [];
-    $req = $this->getBdd()->prepare('SELECT * FROM' .table);
+    $req = $this->getBdd()->prepare('SELECT * FROM ' .$table);
     $req->execute();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
       $var[] = new $obj($data);
+      $var[]->toJSON();
     }
     return $var;
     $req->closeCursor();
