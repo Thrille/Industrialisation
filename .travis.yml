@@ -3,4 +3,4 @@ php:
   - '7.4.0'
 
 script:
-  - echo Intégration terminé
+  - echo Integration termine
