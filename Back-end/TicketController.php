@@ -7,7 +7,7 @@ class TicketController{
 
     // Création d'un nouveau ticket
     static function Create(array $param){  
-              
+              self::$_ticketManager = new TicketManager;
     }
 
     // Récupération de tous les ticket
@@ -33,6 +33,8 @@ class TicketController{
 
     //Suppression du ticket
     static function Delete($id){
-
+        self::$_ticketManager = new TicketsManager;
+        $bDelete = self::$_ticketManager->Delete($id);
+        return $bDelete;
     }
 }
