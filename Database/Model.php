@@ -1,10 +1,12 @@
 <?php
+require_once(dirname(__FILE__).'/.env.php');
+
 abstract class Model{
   private static $bdd;
 
   //instanciation connexion bdd
   private static function setBdd(){
-    self::$bdd = new PDO('mysql:host=localhost;dbname=ticketing;charset=utf8', 'root', '');
+    self::$bdd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
     self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
   }
 
