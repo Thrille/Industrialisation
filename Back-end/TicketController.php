@@ -1,5 +1,5 @@
 <?php
-require_once(__ROOT__.'/Database/TicketManager.php');
+require_once __ROOT__.'/Database/TicketsManager.php';
 
 class TicketController{
 
