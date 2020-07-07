@@ -9,6 +9,11 @@ class RolesManager extends Model{
   }
 
   //récupère un role par rapport à son code
-  public
+  public function getRole($code){
+    $req = $this->getBdd()->prepare('SELECT * FROM TOLE WHERE R_CODE='.$code);
+    $req->execute();
+    $var = $req->fetch(PDO::FETCH_ASSOC);
+    return $var;
+  }
 }
 ?>
