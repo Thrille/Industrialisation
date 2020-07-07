@@ -35,5 +35,17 @@ class TicketsManager extends Model{
       return false;
     }
   }
+
+  //créer un nouveau ticket
+  public function createTicket(array $param){
+    $req = $this->getBdd()->prepare("INSERT INTO TICKET (T_NUMERO, T_DATE_SAISIE, T_DESCRIPTION, MATERIEL_M_ID, ETAT_E_CODE) VALUES ('".$param[0]."', '".$param[1]."', '".$param[2]."', '".$param[3]."', '".$param[4]."')");
+    $count = $req->execute();
+    if($count != 0){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }
 ?>

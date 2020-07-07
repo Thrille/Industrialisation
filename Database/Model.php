@@ -24,6 +24,7 @@ abstract class Model{
     $req->execute();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
       $var[] = new $obj($data);
+      $var[]->toJSON();
     }
     return $var;
     $req->closeCursor();
