@@ -9,3 +9,10 @@ branches:
 
 script:
   - echo Integration termine
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on:
+    branch: master
