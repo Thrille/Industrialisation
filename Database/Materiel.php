@@ -17,6 +17,15 @@ require_once __ROOT__.'/Database/Entity.php';
       }
     }
 
+    //SETTERS
+    public function setM_ID($M_ID){
+      $this->M_ID = $M_ID;
+    }
+
+    public function setM_LIBELLE($M_LIBELLE){
+      $this->M_LIBELLE = $M_LIBELLE;
+    }
+
     //GETTERS
     public function getM_ID(){
       return $this->M_ID;

@@ -1,7 +1,7 @@
 <?php
 require_once __ROOT__.'/Database/Entity.php';
 class Ticket extends Entity{
-  protected $T_ID, $T_NUMERO, $T_DATE_SAISIE, $T_DESCRIPTION, $MATERIEL_M_ID, $ETAT_E_CODE;
+  protected $T_ID, $T_NUMERO, $T_DATE_SAISIE, $T_DESCRIPTION, $MATERIEL_M_ID, $ETAT_E_CODE, $ETAT_E_LIBELLE, $MATERIEL_M_LIBELLE, $TYPE_INTERVENTION_TI_LIBELLE, $UTILISATEUR_U_IDENTIFIANT;
 
   public function __construct(array $data){
     $this->hydrate($data);
@@ -45,6 +45,23 @@ class Ticket extends Entity{
     $this->ETAT_E_CODE = $ETAT_E_CODE;
   }
 
+  public function setETAT_E_LIBELLE($ETAT_E_LIBELLE){
+    $this->ETAT_E_LIBELLE = $ETAT_E_LIBELLE;
+  }
+
+  public function setMATERIEL_M_LIBELLE($MATERIEL_M_LIBELLE){
+    $this->MATERIEL_M_LIBELLE = $MATERIEL_M_LIBELLE;
+  }
+
+  public function setTYPE_INTERVENTION_TI_LIBELLE($TYPE_INTERVENTION_TI_LIBELLE){
+    $this->TYPE_INTERVENTION_TI_LIBELLE = $TYPE_INTERVENTION_TI_LIBELLE;
+  }
+
+  public function setUTILISATEUR_U_IDENTIFIANT($UTILISATEUR_U_IDENTIFIANT){
+    $this->UTILISATEUR_U_IDENTIFIANT = $UTILISATEUR_U_IDENTIFIANT;
+  }
+
+
   //GETTERS
   public function getT_ID(){
     return $this->T_ID;
@@ -68,6 +85,22 @@ class Ticket extends Entity{
 
   public function getETAT_E_CODE(){
     return $this->ETAT_E_CODE;
+  }
+
+  public function getETAT_E_LIBELLE(){
+    return $this->ETAT_E_LIBELLE;
+  }
+
+  public function getMATERIEL_M_LIBELLE(){
+    return $this->MATERIEL_M_LIBELLE;
+  }
+
+  public function getTYPE_INTERVENTION_TI_LIBELLE(){
+    return $this->TYPE_INTERVENTION_TI_LIBELLE;
+  }
+
+  public function getUTILISATEUR_U_IDENTIFIANT(){
+    return $this->UTILISATEUR_U_IDENTIFIANT;
   }
 }
 ?>
