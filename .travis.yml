@@ -1,21 +1,21 @@
 language: php
 php:
-  - '7.4.0'
-
+- 7.4.0
 branches:
   only:
-    - master
-    - Integration
-
+  - master
+  - Integration
 script:
-  - echo Integration termine
-  - npm install && npm run publish
-  
+- echo Integration termine
+- npm install && npm run publish
 deploy:
   provider: script
   on:
     branch: Integration
   script:
-    - ssh thrille@ssh-thrille.alwaysdata.net 
-    - cd www/Industrialisation
-    - git pull
+  - ssh thrille@ssh-thrille.alwaysdata.net
+  - cd www/Industrialisation
+  - git pull
+before_install:
+- openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
