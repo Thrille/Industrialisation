@@ -6,6 +6,7 @@ class TicketController{
 
     use Helpers;
 
+    //variable objet pour le TicketsManager
     private static $_ticketsManager;
 
     // Création d'un nouveau ticket

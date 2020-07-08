@@ -1,10 +1,10 @@
 class APIAdapter {
 
-    #apiURL;
-    #authTocken;
+    apiURL;
+    authTocken;
 
     constructor() {
-        this.apiURL = window.location.href + '/api/';
+        this.apiURL = (window.location.origin + window.location.pathname).replace('index.html', '') + 'api/';
     }
 
     async Auth({login, password}) {

@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="src/style/layout.css">
-        <link rel="stylesheet" href="src/style/theme.css">
-        <link rel="icon" href="src/asset/favicon.ico">
+        <link rel="stylesheet" href="Front-end/src/style/layout.css">
+        <link rel="stylesheet" href="Front-end/src/style/theme.css">
+        <link rel="icon" href="Front-end/src/asset/favicon.ico">
         <title>Ticket</title>
     </head>
     <body>
@@ -21,21 +21,22 @@
 
         <header>
             <nav>
-                <img src="src/asset/logo.jpg" alt="logo">
+                <img src="Front-end/src/asset/logo.jpg" alt="logo">
                 <button>Créer un ticket</button>
             </nav>
         </header>
         <main>
-            <section id="ticket-list">
-                <nav><!-- liste des tickets --></nav>
-            </section>
-            <section></section>
+            <section id="ticket-list"></section>
+            <section id="ticket-details"></section>
             <section id="new-ticket"></section>
         </main>
         <footer>
             <div>Groupe de Vincent Mandrelier, Flavien Racoeur et Lug Eslan</div>
         </footer>
-        <script src="index.js"></script>
-        <script src="lib/script/App.js"></script>
+
+        <!-- Debug Script -->
+        <script src="Front-end/src/script/App.js" type="module"></script>
+        <!-- Production Script -->
+        <!--<script src="index.js"></script>-->
     </body>
 </html>
