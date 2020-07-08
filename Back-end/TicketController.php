@@ -10,10 +10,11 @@ class TicketController{
     private static $_ticketsManager;
 
     // Création d'un nouveau ticket
-    static function Create(array $param){  
+    //a besoin de l'id du createur et l'id du prochain intervenant
+    static function Create(array $param){
         self::$_ticketsManager = new TicketsManager;
         $bCreate = self::$_ticketsManager->createTicket($param);
-        
+
         if (is_bool($ticket)) {
             return json_encode($ticket);
         }
@@ -37,15 +38,15 @@ class TicketController{
     }
 
     //Mise à jour du ticket
-    static function Update($id, array $param){      
+    static function Update($id, array $param){
         self::$_ticketsManager = new TicketsManager;
         $ticket = self::$_ticketsManager->updateTicket($id,$param);
 
         if ($ticket === NULL) {
             return json_encode($ticket);
         }
-        
-        return $ticket->toJSON();        
+
+        return $ticket->toJSON();
     }
 
     //Suppression du ticket
