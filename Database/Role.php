@@ -17,6 +17,15 @@ class Role extends Entity{
     }
   }
 
+  //SETTERS
+  public function setR_LIBELLE($R_LIBELLE){
+    $this->R_LIBELLE = $R_LIBELLE;
+  }
+
+  public function setR_CODE($R_CODE){
+    $this->R_CODE = $R_CODE;
+  }
+
   //GETTERS
   public function getR_LIBELLE(){
     return $this->R_LIBELLE;

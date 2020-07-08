@@ -17,6 +17,8 @@ var _APIAdapter = _interopRequireDefault(require("./APIAdapter.js"));
 
 var _Ticket = _interopRequireDefault(require("./Ticket.js"));
 
+var _TicketElement = _interopRequireDefault(require("./TicketElement.js"));
+
 var TicketList = /*#__PURE__*/function () {
   function TicketList() {
     (0, _classCallCheck2["default"])(this, TicketList);
@@ -66,11 +68,11 @@ var TicketList = /*#__PURE__*/function () {
       var _this2 = this;
 
       this.tickets.forEach(function (ticket) {
-        var li = document.createElement("li");
-        var ticketElement = ticket.render();
-        li.appendChild(ticketElement);
+        var oTicketElement = new _TicketElement["default"]({
+          ticket: ticket
+        });
 
-        _this2.wrapperNode.appendChild(li);
+        _this2.wrapperNode.appendChild(oTicketElement.renderInListContext());
       });
     }
   }]);

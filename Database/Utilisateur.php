@@ -18,6 +18,19 @@ class Utilisateur extends Entity{
     }
   }
 
+  //SETTERS
+  public function setU_ID($U_ID){
+    $this->U_ID = $U_ID;
+  }
+
+  public function setU_IDENTIFIANT($U_IDENTIFIANT){
+    $this->U_IDENTIFIANT = $U_IDENTIFIANT;
+  }
+
+  public function setROLE_R_CODE($ROLE_R_CODE){
+    $this->ROLE_R_CODE = $ROLE_R_CODE;
+  }
+
   //GETTERS
   public function getU_ID(){
     return $this->U_ID;

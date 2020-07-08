@@ -13,11 +13,16 @@
 
 body {
     width: 100%;
-    min-height: 100vw;
+    min-height: 100vh;
+    padding-top: var(--header-height);
 }
 
 header {
     height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 header nav {
@@ -31,6 +36,40 @@ img {
     height: 100%;
 }
 
-#ticket-list {
+main {
+    height: 100%;
+}
 
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 5rem;
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+#ticket-list {
+    height: 100%;
+    overflow-y: auto;
 }

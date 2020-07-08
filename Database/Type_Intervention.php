@@ -17,6 +17,15 @@ class Type_Intervention extends Entity{
     }
   }
 
+  //SETTERS
+  public function setTI_CODE($TI_CODE){
+    $this->TI_CODE = $TI_CODE;
+  }
+
+  public function setTI_LIBELLE($TI_LIBELLE){
+    $this->TI_LIBELLE = $TI_LIBELLE;
+  }
+
   //GETTERS
   public function getTI_CODE(){
     return $this->TI_CODE;
