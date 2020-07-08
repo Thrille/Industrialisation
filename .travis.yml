@@ -12,12 +12,9 @@ script:
   - npm install && npm run publish
   
 deploy:
-  # script:
-  #   - php Back-end/Installation.php DB_HOST=mysql-thrille.alwaysdata.net DB_NAME=thrille_ticketing DB_CHARSET=utf-8 DB_USER=thrille DB_PASSWORD=Deraper18 DB_PORT=3306
-  # provider: pages
-  # skip-cleanup: true
-  # github-token: $GITHUB_TOKEN
-  # on:
-  #   branch: Integration
+  on:
+    branch: Integration
   script:
-    - ssh 
+    - ssh thrille@ssh-thrille.alwaysdata.net 
+    - cd www/Industrialisation
+    - git pull
