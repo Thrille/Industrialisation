@@ -24,6 +24,8 @@ class UtilisateursManager extends Model{
     }
     return NULL;
   }
+
+  //récupère un utilisateur par rapport à son identifiant
   public function getUtilisateurByIdentifiant($identifiant){
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE U_IDENDTIFIANT= :identifiant;');
     $req->execute(array(
