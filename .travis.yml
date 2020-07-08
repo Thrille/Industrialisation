@@ -9,6 +9,7 @@ branches:
 
 script:
   - echo Integration termine
+  - npm install && npm run publish
 
 deploy:
   provider: pages
