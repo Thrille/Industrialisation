@@ -17,6 +17,15 @@ class Etat extends Entity{
     }
   }
 
+  //SETTERS
+  public function setE_CODE($E_CODE){
+    $this->E_CODE = $E_CODE;
+  }
+
+  public function setE_LIBELLE($E_LIBELLE){
+    $this->E_LIBELLE = $E_LIBELLE;
+  }
+
   //GETTERS
   public function getE_CODE(){
     return $this->E_CODE;

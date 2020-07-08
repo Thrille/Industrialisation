@@ -1,5 +1,6 @@
 import APIAdapter from "./APIAdapter.js";
 import Ticket from "./Ticket.js";
+import TicketElement from './TicketElement.js';
 
 class TicketList {
 
@@ -41,22 +42,15 @@ class TicketList {
     }
 
     render() {
-        let nav = document.createElement("nav");
-
-        this.parentNode.appendChild(nav);
-        nav.appendChild(this.wrapperNode);
+        this.parentNode.appendChild(this.wrapperNode);
     }
 
     renderTickets() {
         this.tickets.forEach(ticket => {
 
-            let li = document.createElement("li");
+            let oTicketElement = new TicketElement({ticket: ticket});
 
-            let ticketElement = ticket.render();
-
-            li.appendChild(ticketElement);
-
-            this.wrapperNode.appendChild(li);
+            this.wrapperNode.appendChild(oTicketElement.renderInListContext());
         });
     }
 };

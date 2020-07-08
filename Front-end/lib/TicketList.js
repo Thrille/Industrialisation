@@ -58,9 +58,7 @@ var TicketList = /*#__PURE__*/function () {
   }, {
     key: "render",
     value: function render() {
-      var nav = document.createElement("nav");
-      this.parentNode.appendChild(nav);
-      nav.appendChild(this.wrapperNode);
+      this.parentNode.appendChild(this.wrapperNode);
     }
   }, {
     key: "renderTickets",
