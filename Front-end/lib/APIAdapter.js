@@ -15,25 +15,14 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _apiURL = new WeakMap();
-
-var _authTocken = new WeakMap();
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var APIAdapter = /*#__PURE__*/function () {
   function APIAdapter() {
     (0, _classCallCheck2["default"])(this, APIAdapter);
-
-    _apiURL.set(this, {
-      writable: true,
-      value: void 0
-    });
-
-    _authTocken.set(this, {
-      writable: true,
-      value: void 0
-    });
-
-    this.apiURL = window.location.href + '/api/';
+    (0, _defineProperty2["default"])(this, "apiURL", void 0);
+    (0, _defineProperty2["default"])(this, "authTocken", void 0);
+    this.apiURL = window.location.origin + window.location.pathname + 'api/';
   }
 
   (0, _createClass2["default"])(APIAdapter, [{

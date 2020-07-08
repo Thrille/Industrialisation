@@ -4,7 +4,7 @@ class APIAdapter {
     authTocken;
 
     constructor() {
-        this.apiURL = window.location.href + '/api/';
+        this.apiURL = window.location.origin + window.location.pathname + 'api/';
     }
 
     async Auth({login, password}) {
