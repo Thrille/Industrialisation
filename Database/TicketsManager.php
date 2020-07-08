@@ -76,7 +76,25 @@ class TicketsManager extends Model{
       $req = $this->getBdd()->prepare('SELECT LAST_INSERT_ID() AS ID;');
       $req->execute();
       $var = $req->fetch(PDO::FETCH_ASSOC);
+      //paramètres pour creation intervention 1
+      $param2 = array(
+        'utilisateurId'=> $param['createurId'],
+        'ticketId' => $var['ID'],
+        'typeInterventionCode' => 1,
+        'date' => now()
+      );
+      //paramètres pour création intervention 2
+      $param3 = array(
+        'utilisateurId'=> $param['intervenantId'],
+        'ticketId' => $var['ID'],
+        'typeInterventionCode' => 2,
+        'date' => now()
+      );
+      //création des interventions
+      $req2 = $this->createIntervention($param2);
+      $req3 = $this->createIntervention($param3);
 
+      //return le ticket créé
       return $this->getTicket(intval($var['ID']));
     }
     else{
