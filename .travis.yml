@@ -12,6 +12,7 @@ script:
   - npm install && npm run publish
   
 deploy:
+  provider: script
   on:
     branch: Integration
   script:
