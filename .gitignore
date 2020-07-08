@@ -1,4 +1,3 @@
 Database/.env.php
 node_modules
 package-lock.json
-lib/*

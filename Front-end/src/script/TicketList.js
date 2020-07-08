@@ -2,23 +2,25 @@ import APIAdapter from "./APIAdapter";
 
 class TicketList {
 
-    parentNode;
-    wrapperNode;
-    tickets;
-    apiAdapter;
+    #parentNode;
+    #wrapperNode;
+    #tickets;
+    #apiAdapter;
 
     constructor() {
         this.parentNode = document.getElementById("ticket-list");
         this.wrapperNode = document.createElement('ul');
-        tickets = [];
+        this.tickets = [];
 
         this.render();
         this.apiAdapter = new APIAdapter();
     }
 
     loadData() {
+        document.getElementById("debug").value += "loadData";
         this.apiAdapter.ReadTicketList().then(response => {
-            console.log(response);
+            this.tickets = response;
+            document.getElementById("debug").value += response;
         });
     }
 
