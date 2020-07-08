@@ -17,3 +17,7 @@ deploy:
   github-token: $GITHUB_TOKEN
   on:
     branch: Integration
+
+after_deploy:
+  on: gh-pages
+  - php Back-end/Installation.php DB_HOST=host DB_NAME=name DB_CHARSET=charset DB_USER=user DB_PASSWORD=password DB_PORT=port
