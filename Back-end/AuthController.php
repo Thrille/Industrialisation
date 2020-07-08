@@ -1,6 +1,5 @@
 <?php
-namespace Controller;
-
+require_once __ROOT__.'/Database/UtilisateursController.php';
 class AuthController{
     private static $_utilisateurManager;
     
