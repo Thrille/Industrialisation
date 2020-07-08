@@ -1,0 +1,35 @@
+{
+  "name": "industrialisation",
+  "version": "1.0.0",
+  "description": "Projet d'industrialisation",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "pack": "webpack",
+    "build": "babel Front-end/src/script -d Front-end/lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm run build && npm run pack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thrille/Industrialisation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thrille/Industrialisation/issues"
+  },
+  "homepage": "https://github.com/Thrille/Industrialisation#readme"
+}
