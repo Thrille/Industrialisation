@@ -4,6 +4,9 @@ class APIAdapter {
     authTocken;
 
     constructor() {
+        console.log(window.location.origin + window.location.pathname + 'api/');
+        console.log(window.location.href + 'api/');
+        console.log(window.location.protocol + "//" + window.location.host + window.location.pathname + 'api/');
         this.apiURL = window.location.origin + window.location.pathname + 'api/';
     }
 
