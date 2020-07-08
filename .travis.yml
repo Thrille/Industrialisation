@@ -24,6 +24,4 @@ deploy:
   on:
     branch: Integration
   script:
-  - ssh thrille@ssh-thrille.alwaysdata.net
-  - cd www/Industrialisation
-  - git pull
+  - ssh thrille@ssh-thrille.alwaysdata.net 'cd www/Industrialisation && git pull'
