@@ -7,7 +7,7 @@ class TypesInterventionManager extends Model{
 
   //récupère tous les types d'intervention
   public function getAllTypes_Intervention(){
-    return $this->getAnn('TYPE_INTERVENTION', 'Type_Intervention');
+    return $this->getAll('TYPE_INTERVENTION', 'Type_Intervention');
   }
 
   //récupère un type d'intervention parr rapport à son code
