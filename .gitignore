@@ -1,3 +1,4 @@
 Database/.env.php
+Front-end/lib/*
 node_modules
 package-lock.json
