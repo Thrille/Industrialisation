@@ -1,3 +1,5 @@
-import TicketList from './TicketList';
+import TicketList from './TicketList.js';
 
-let ticketList = new TicketList();
+const ticketList = new TicketList();
+
+ticketList.loadData();

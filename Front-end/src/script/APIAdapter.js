@@ -1,7 +1,7 @@
 class APIAdapter {
 
-    #apiURL;
-    #authTocken;
+    apiURL;
+    authTocken;
 
     constructor() {
         this.apiURL = window.location.href + '/api/';
