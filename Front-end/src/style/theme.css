@@ -1,0 +1,30 @@
+:root {
+    --color-shadow: rgba(0, 0, 0, 0.33);
+    --color-shadow-light: rgba(0, 0, 0, 0.15);
+    --color-background: white;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+header {
+    background-color: var(--color-background);
+    box-shadow: 0 0.5em 0.5em var(--color-shadow);
+}
+
+.modal {
+    background-color: var(--color-shadow);
+}
+
+.frame {
+    background-color: var(--color-background);
+}
+
+.hoverable:hover {
+    background-color: var(--color-shadow-light);
+}
+
+.clickable {
+    cursor: pointer;
+}

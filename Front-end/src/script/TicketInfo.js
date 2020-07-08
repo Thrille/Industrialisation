@@ -1,12 +1,7 @@
-import Modal from './Modal.js';
-import TicketInfo from './TicketInfo.js';
+class TicketInfo {
 
-class TicketElement {
-
-    ticket;
-    modal;
     wrapperNode;
-    ticketInfo;
+    ticket;
 
     table;
     numberRow;
@@ -175,52 +170,8 @@ class TicketElement {
 
         this.wrapperNode = this.table;
 
-        this.bindEvents();
-
         return this.wrapperNode;
-    }
-
-    renderInListContext() {
-
-        if(!this.wrapperNode) {
-            this.render();
-        }
-
-        this.li = document.createElement("li");
-
-        this.li.classList.add("hoverable");
-        this.li.classList.add("clickable");
-
-        this.li.appendChild(this.wrapperNode);
-
-        this.wrapperNode = this.li;
-
-        this.bindEvents();
-
-        return this.wrapperNode;
-    }
-
-    bindEvents() {
-        if(this.wrapperNode) {
-
-            this.wrapperNode = this.wrapperNode.cloneNode(true);
-            
-            this.wrapperNode.addEventListener("click", this.clickEvent.bind(this));
-        }
-    }
-
-    clickEvent(event) {
-        console.log(event);
-
-        this.ticketInfo = new TicketInfo({ticket: this.ticket});
-
-        this.modal = new Modal({
-            title: "Détail du ticket",
-            element: this.ticketInfo.render()
-        });
-
-        this.modal.open();
     }
 }
 
-export default TicketElement;
+export default TicketInfo;

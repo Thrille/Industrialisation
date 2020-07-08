@@ -12,6 +12,7 @@ class APIAdapter {
     }
 
     async ReadTicketList() {
+
         return fetch(this.apiURL + 'tickets.php', {
             method: 'GET',
             headers: {
