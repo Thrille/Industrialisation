@@ -10,9 +10,9 @@ branches:
 script:
   - echo Integration termine
   - npm install && npm run publish
-  - php Back-end/Installation.php DB_HOST=mysql-thrille.alwaysdata.net DB_NAME=thrille_ticketing DB_CHARSET=utf-8 DB_USER=thrille DB_PASSWORD=Deraper18 DB_PORT=3306
-
+  
 deploy:
+  - php Back-end/Installation.php DB_HOST=mysql-thrille.alwaysdata.net DB_NAME=thrille_ticketing DB_CHARSET=utf-8 DB_USER=thrille DB_PASSWORD=Deraper18 DB_PORT=3306
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
