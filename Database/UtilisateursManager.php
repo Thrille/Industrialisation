@@ -11,7 +11,7 @@ class UtilisateursManager extends Model{
   }
 
   //récupère un utilisateur par rapport à son id
-  public function getTicket($id)
+  public function getUtilisateur($id)
   {
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE U_ID= :id;');
     $req->execute(array(
@@ -22,7 +22,18 @@ class UtilisateursManager extends Model{
     if(is_array($var)){
       return new $this->sModel($var);
     }
+    return NULL;
+  }
+  public function getUtilisateurByIdentifiant($identifiant){
+    $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE U_IDENDTIFIANT= :identifiant;');
+    $req->execute(array(
+      ':identifiant' => $identifiant
+    ));
+    $var = $req->fetch(PDO::FETCH_ASSOC);
 
+    if(is_array($var)){
+      return new $this->sModel($var);
+    }
     return NULL;
   }
 }
