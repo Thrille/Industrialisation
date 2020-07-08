@@ -11,7 +11,7 @@ class TicketsManager extends Model{
     $req->execute();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
 
-      $var[] = new $obj($data);
+      $var[] = new $this->sModel($data);
     }
 
     return $var;
