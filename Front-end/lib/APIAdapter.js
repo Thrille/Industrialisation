@@ -22,7 +22,7 @@ var APIAdapter = /*#__PURE__*/function () {
     (0, _classCallCheck2["default"])(this, APIAdapter);
     (0, _defineProperty2["default"])(this, "apiURL", void 0);
     (0, _defineProperty2["default"])(this, "authTocken", void 0);
-    this.apiURL = window.location.origin + window.location.pathname + 'api/';
+    this.apiURL = (window.location.origin + window.location.pathname).replace('index.html', '') + 'api/';
   }
 
   (0, _createClass2["default"])(APIAdapter, [{
