@@ -1,7 +1,7 @@
 <?php
 require_once __ROOT__.'/Database/Model.php';
 require_once __ROOT__.'/Database/Jeton_Authentification.php';
-class Jetons_AuthetificationManager extends Model{
+class Jetons_AuthentificationManager extends Model{
 
   private $sModel = 'Jeton_Authentification';
 
