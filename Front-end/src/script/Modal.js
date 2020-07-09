@@ -25,7 +25,7 @@ class Modal {
         this.frameContent = document.createElement("section");
         this.frameHeader = document.createElement("h1");
         this.frameTitle = document.createTextNode(this.title);
-        this.frameHeadWrapper = document.createElement("div");
+        this.frameHeadWrapper = document.createElement("section");
 
         this.wrapperNode.classList.add("modal");
         this.frame.classList.add("frame");
@@ -53,7 +53,6 @@ class Modal {
     }
 
     close() {
-        console.log("close");
         this.modalManager.innerHTML = "";
     }
 

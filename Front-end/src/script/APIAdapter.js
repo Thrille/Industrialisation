@@ -33,7 +33,19 @@ class APIAdapter {
     }
 
     async CreateNewTicket({number, description, stateCode, deviceCode}) {
-        
+        return fetch(this.apiURL + 'ticket.php', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + this.authTocken
+            },
+            body: {
+                ticket_number: number,
+                ticket_description: description,
+                ticket_state_code: stateCode,
+                ticket_device_code: deviceCode
+            }
+        });
     }
 
     async UpdateTicketById({id, number, description, stateCode, deviceCode}) {

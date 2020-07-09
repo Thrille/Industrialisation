@@ -210,7 +210,6 @@ class TicketElement {
     }
 
     clickEvent(event) {
-        console.log(event);
 
         this.ticketInfo = new TicketInfo({ticket: this.ticket});
 

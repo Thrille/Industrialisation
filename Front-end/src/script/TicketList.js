@@ -32,9 +32,9 @@ class TicketList {
                             description: t["T_DESCRIPTION"],
                             interventions: [], 
                             stateCode: t["ETAT_E_CODE"], 
-                            stateName: t["MATERIEL_M_LIBELLE"],
+                            stateName: t["ETAT_E_LIBELLE"],
                             deviceCode: t["MATERIEL_M_ID"],
-                            deviceName: t["ETAT_E_LIBELLE"]
+                            deviceName: t["MATERIEL_M_LIBELLE"]
                         }));
                     });
 
