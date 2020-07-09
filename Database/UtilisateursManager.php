@@ -57,6 +57,7 @@ class UtilisateursManager extends Model{
     return NULL;
   }
 
+  //vérifie que le token identifie un technicien
   public function isTechnicien($JA_HASH){
     $req = $this->getBdd()->prepare('SELECT UTILISATEUR.ROLE_R_CODE FROM JETON_AUTHENTIFICATION JOIN UTILISATEUR ON JETON_AUTHENTIFICATION.UTILISATEUR_U_ID = UTILISATEUR.U_ID WHERE JETON_AUTHENTIFICATION.JA_HASH = :JA_HASH;');
     $req->execute(array(
