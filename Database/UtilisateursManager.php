@@ -45,10 +45,14 @@ class UtilisateursManager extends Model{
     $req->execute(array(
       ':role_code' => 'T'
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
-    print_r($var);
+    $var = [];
+    while($data = $req->fetch(PDO::FETCH_ASSOC)){
+
+      $var[] = new $this->sModel($data);  
+    }
+
     if(is_array($var)){
-      return new $this->sModel($var);
+      return $var;
     }
     return NULL;
   }

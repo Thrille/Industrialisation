@@ -17,7 +17,6 @@ class MaterielsManager extends Model{
       ':id' => $id
     ));
     $var = $req->fetch(PDO::FETCH_ASSOC);
-
     if(is_array($var)){
       return new $this->sModel($var);
     }
