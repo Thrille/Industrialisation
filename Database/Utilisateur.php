@@ -31,6 +31,10 @@ class Utilisateur extends Entity{
     $this->ROLE_R_CODE = $ROLE_R_CODE;
   }
 
+  public function setU_MDP($U_MDP){
+    $this->U_MDR = $U_MDP;
+  }
+
   //GETTERS
   public function getU_ID(){
     return $this->U_ID;
