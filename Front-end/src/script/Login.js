@@ -73,9 +73,9 @@ class Login {
         }).then(response => {
             if (response.ok) {
                 response.json().then(data => {
-                    App.authToken = data.authToken
+                    App.authToken = data.token
 
-                    this.onLoginSuccess()
+                    this.onLoginSuccess();
                 });
             }
         })
@@ -85,8 +85,11 @@ class Login {
         this.modal.enableCloseAction();
         this.modal.close();
         App.logged = true;
+
         const ticketList = new TicketList();
         const newTicketButton = new NewTicket();
+
+        ticketList.loadData()
     }
 }
 
