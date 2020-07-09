@@ -40,6 +40,10 @@ main {
     height: 100%;
 }
 
+textarea {
+    resize: none;
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -67,6 +71,11 @@ main {
 .modal-content {
     height: 100%;
     overflow-y: auto;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
 }
 
 #ticket-list {
