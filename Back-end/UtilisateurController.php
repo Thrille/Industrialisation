@@ -23,7 +23,7 @@ class UtilisateurController{
         self::$_utilisateursManager = new UtilisateursManager;
         $bTechnicien = self::$_utilisateursManager->isTechnicien($hash);
 
-        return $bTechnicien;
+        return json_encode($bTechnicien);
     }
 
 }
