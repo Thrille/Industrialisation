@@ -45,8 +45,11 @@ class TicketsManager extends Model{
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
       $b = false;
       $num_ticket = $data['T_NUMERO'];
+      //Verifier si le tableau est vide, pour la première insertion
       if(!empty($aTickets)){
+        //comparer les valeurs de la requete avec celles du tableau
         foreach($aTickets as &$value){
+          //si on trouve le même numéro de ticket dans le tableau, on rajoute uniquement la partie intervention
           if($num_ticket == $value['T_NUMERO']){
             $aIntervention = array(
               'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
@@ -58,17 +61,20 @@ class TicketsManager extends Model{
             $b = true;
           }
         }
+        //si a la fin de la comparaison aucun ticket du meme numero a été détecté, on le créer dans le tableau
         if($b === false){
           $aNouveauTicket = $this->ajoutTicketAuTableau($data);
           array_push($aTickets, $aNouveauTicket);
           $b = true;
         }
       }
+      //si le tableau est vide, on créer le premier ticket qui arrive (première insertion)
       else{
         $aNouveauTicket = $this->ajoutTicketAuTableau($data);
         array_push($aTickets, $aNouveauTicket);
       }
     }
+    //retourne le tableau de ticket mis en ordre
     return $aTickets;
     $req->closeCursor();
   }
