@@ -22,6 +22,28 @@ class APIAdapter {
         });
     }
 
+    async ReadStateList() {
+
+        return fetch(this.apiURL + 'devices.php', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + this.authTocken
+            }
+        });
+    }
+
+    async ReadStateList() {
+
+        return fetch(this.apiURL + 'states.php', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + this.authTocken
+            }
+        });
+    }
+
     async ReadTicketById(id) {
         return fetch(this.apiURL + 'ticket.php?id=' + id, {
             method: 'GET',
