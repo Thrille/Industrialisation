@@ -55,10 +55,11 @@ class TicketsManager extends Model{
             array_push($value['INTERVENTION'], $aIntervention);
             $b = true;
           }
-          if($b === false){
-            $aNouveauTicket = $this->ajoutTicketAuTableau($data);
-            array_push($aTickets, $aNouveauTicket);
-          }
+        }
+        if($b === false){
+          $aNouveauTicket = $this->ajoutTicketAuTableau($data);
+          array_push($aTickets, $aNouveauTicket);
+          $b = true;
         }
       }
       else{
