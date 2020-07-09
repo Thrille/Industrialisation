@@ -1,7 +1,8 @@
-import TicketList from './TicketList.js';
-import NewTicket from './NewTicket.js';
 
-const ticketList = new TicketList();
-const newTicketButton = new NewTicket();
+import Login from './Login.js'
 
-ticketList.loadData();
+var logged = false
+var authToken = ""
+const login = new Login()
+
+export default { logged, authToken }

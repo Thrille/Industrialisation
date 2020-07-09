@@ -8,14 +8,26 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    font-size: 12pt;
+    
 }
 
 body {
     width: 100%;
     min-height: 100vh;
     padding-top: var(--header-height);
+    font-size: 16px;
 }
+
+*:not(body) {
+    font-size: 120%;
+}
+
+@media (width >= 600px) {
+    *:not(body) {
+        font-size: 100%;
+    }
+}
+
 
 header {
     height: var(--header-height);
