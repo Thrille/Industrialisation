@@ -12,6 +12,7 @@ class TicketsManager extends Model{
   private function ajoutTicketAuTableau($data){
     $aNouvelleIntervention = array(
       'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
+      'TYPE_INTERVENTION_TI_CODE' => $data['TYPE_INTERVENTION_TI_CODE'],
       'TYPE_INTERVENTION_TI_LIBELLE' => $data['TYPE_INTERVENTION_TI_LIBELLE'],
       'I_DATE' => $data['I_DATE']
     );
@@ -38,34 +39,42 @@ class TicketsManager extends Model{
   //au tableau d'interventions, sinon il ajoute tout le nouveau ticket.
   public function getAllTickets(){
 
-    $req = $this->getBdd()->prepare('SELECT TICKET.T_NUMERO, TICKET.T_DATE_SAISIE, TICKET.T_DESCRIPTION, MATERIEL.M_LIBELLE AS MATERIEL_M_LIBELLE, ETAT.E_LIBELLE AS ETAT_E_LIBELLE, UTILISATEUR.U_IDENTIFIANT AS UTILISATEUR_U_IDENTIFIANT, TYPE_INTERVENTION.TI_LIBELLE AS TYPE_INTERVENTION_TI_LIBELLE, INTERVENTION.I_DATE, TICKET.T_ID, TICKET.MATERIEL_M_ID, TICKET.ETAT_E_CODE FROM TICKET JOIN INTERVENTION ON TICKET.T_ID = INTERVENTION.TICKET_T_ID JOIN UTILISATEUR ON INTERVENTION.UTILISATEUR_U_ID = UTILISATEUR.U_ID JOIN TYPE_INTERVENTION ON INTERVENTION.TYPE_INTERVENTION_TI_CODE = TYPE_INTERVENTION.TI_CODE JOIN MATERIEL ON TICKET.MATERIEL_M_ID = MATERIEL.M_ID JOIN ETAT ON TICKET.ETAT_E_CODE = ETAT.E_CODE ORDER BY TICKET.T_NUMERO;');
+    $req = $this->getBdd()->prepare('SELECT TICKET.T_NUMERO, TICKET.T_DATE_SAISIE, TICKET.T_DESCRIPTION, MATERIEL.M_LIBELLE AS MATERIEL_M_LIBELLE, ETAT.E_LIBELLE AS ETAT_E_LIBELLE, UTILISATEUR.U_IDENTIFIANT AS UTILISATEUR_U_IDENTIFIANT, TYPE_INTERVENTION.TI_LIBELLE AS TYPE_INTERVENTION_TI_LIBELLE, TYPE_INTERVENTION.TI_CODE AS TYPE_INTERVENTION_TI_CODE, INTERVENTION.I_DATE, TICKET.T_ID, TICKET.MATERIEL_M_ID, TICKET.ETAT_E_CODE FROM TICKET JOIN INTERVENTION ON TICKET.T_ID = INTERVENTION.TICKET_T_ID JOIN UTILISATEUR ON INTERVENTION.UTILISATEUR_U_ID = UTILISATEUR.U_ID JOIN TYPE_INTERVENTION ON INTERVENTION.TYPE_INTERVENTION_TI_CODE = TYPE_INTERVENTION.TI_CODE JOIN MATERIEL ON TICKET.MATERIEL_M_ID = MATERIEL.M_ID JOIN ETAT ON TICKET.ETAT_E_CODE = ETAT.E_CODE ORDER BY TICKET.T_NUMERO;');
     $req->execute();
     $aTickets = array();
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
       $b = false;
       $num_ticket = $data['T_NUMERO'];
+      //Verifier si le tableau est vide, pour la première insertion
       if(!empty($aTickets)){
+        //comparer les valeurs de la requete avec celles du tableau
         foreach($aTickets as &$value){
+          //si on trouve le même numéro de ticket dans le tableau, on rajoute uniquement la partie intervention
           if($num_ticket == $value['T_NUMERO']){
             $aIntervention = array(
               'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
+              'TYPE_INTERVENTION_TI_CODE' => $data['TYPE_INTERVENTION_TI_CODE'],
               'TYPE_INTERVENTION_TI_LIBELLE' => $data['TYPE_INTERVENTION_TI_LIBELLE'],
               'I_DATE' => $data['I_DATE']
             );
             array_push($value['INTERVENTION'], $aIntervention);
             $b = true;
           }
-          if($b === false){
-            $aNouveauTicket = $this->ajoutTicketAuTableau($data);
-            array_push($aTickets, $aNouveauTicket);
-          }
+        }
+        //si a la fin de la comparaison aucun ticket du meme numero a été détecté, on le créer dans le tableau
+        if($b === false){
+          $aNouveauTicket = $this->ajoutTicketAuTableau($data);
+          array_push($aTickets, $aNouveauTicket);
+          $b = true;
         }
       }
+      //si le tableau est vide, on créer le premier ticket qui arrive (première insertion)
       else{
         $aNouveauTicket = $this->ajoutTicketAuTableau($data);
         array_push($aTickets, $aNouveauTicket);
       }
     }
+    //retourne le tableau de ticket mis en ordre
     return $aTickets;
     $req->closeCursor();
   }
