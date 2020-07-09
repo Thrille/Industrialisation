@@ -13,10 +13,10 @@ class APIAdapter {
             headers: {
                 'Accept': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 login: login,
                 password: password
-            }
+            })
         });
     }
 
@@ -70,12 +70,12 @@ class APIAdapter {
                 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + this.authTocken
             },
-            body: {
+            body: JSON.stringify({
                 ticket_number: number,
                 ticket_description: description,
                 ticket_state_code: stateCode,
                 ticket_device_code: deviceCode
-            }
+            })
         });
     }
 

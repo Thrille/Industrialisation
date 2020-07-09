@@ -50,7 +50,6 @@ class Login {
         this.wrapperNode.appendChild(this.validationButton)
 
         this.bindEvents()
-        this.onLoginSuccess()
 
         return this.wrapperNode;
     }
