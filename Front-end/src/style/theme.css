@@ -1,6 +1,6 @@
 :root {
-    --color-shadow: rgba(0, 0, 0, 0.33);
-    --color-shadow-light: rgba(0, 0, 0, 0.15);
+    --color-shadow: rgba(0, 0, 0, .33);
+    --color-shadow-light: rgba(0, 0, 0, .15);
     --color-background: white;
 }
 
@@ -10,7 +10,7 @@ body {
 
 header {
     background-color: var(--color-background);
-    box-shadow: 0 0.5em 0.5em var(--color-shadow);
+    box-shadow: 0 .5em .5em var(--color-shadow);
 }
 
 .modal {

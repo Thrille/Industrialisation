@@ -1,4 +1,6 @@
 import APIAdapter from "./APIAdapter.js";
+import State from "./State.js";
+import Device from "./Device.js";
 
 class TicketForm {
 
@@ -14,6 +16,9 @@ class TicketForm {
             resolver: "Intervenant devant résoudre",
             button: "Créer le ticket"
         };
+
+        this.states = [];
+        this.devices = [];
 
         this.apiAdapter = new APIAdapter();
     }
@@ -65,6 +70,42 @@ class TicketForm {
         this.bindEvents();
 
         return this.wrapperNode;
+    }
+
+    loadData() {
+
+        Promise.all([this.apiAdapter.ReadStateList(), this.apiAdapter.ReadStateList()]).then(values => {
+            values[0].then(response => {
+
+                if (response.ok) {
+                    response.json().then(data => {
+
+                        console.log(data);
+    
+                        data.forEach(element => {
+                            
+                        });
+                    });
+                }
+            });
+
+            values[1].then(response => {
+
+                if (response.ok) {
+                    response.json().then(data => {
+    
+                        console.log(data)
+
+                        data.forEach(element => {
+                            
+                        });
+                    });
+                }
+            });
+        });
+        
+
+        
     }
 
     bindEvents() {
