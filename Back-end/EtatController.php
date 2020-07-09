@@ -12,7 +12,7 @@ class EtatController{
        // Récupération de tous les etats
        static function GetAllEtats(){
         self::$_etatsManager = new EtatsManager;
-        $etats = self::$_etatsManager->GetAllEtats();
+        $etats = self::$_etatsManager->getAllEtats();
 
         return Helpers::CollectionToJSON($etats);
     }

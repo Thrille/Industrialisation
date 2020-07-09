@@ -12,7 +12,7 @@ class MaterielController{
        // Récupération de tous les materiels
        static function GetAllMateriels(){
         self::$_materielsManager = new MaterielsManager;
-        $materiels = self::$_materielsManager->GetAllMateriels();
+        $materiels = self::$_materielsManager->getAllMateriels();
 
         return Helpers::CollectionToJSON($materiels);
     }
