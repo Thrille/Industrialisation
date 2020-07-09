@@ -85,6 +85,7 @@ class Login {
         this.modal.enableCloseAction();
         this.modal.close();
         App.logged = true;
+        console.log(App)
 
         const ticketList = new TicketList();
         const newTicketButton = new NewTicket();

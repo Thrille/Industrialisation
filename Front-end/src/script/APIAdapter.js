@@ -1,7 +1,8 @@
+import App from "./App.js"
+
 class APIAdapter {
 
     apiURL;
-    authTocken;
 
     constructor() {
         this.apiURL = (window.location.origin + window.location.pathname).replace('index.html', '') + 'api/';
@@ -20,13 +21,19 @@ class APIAdapter {
         });
     }
 
+    getToken() {
+        this.authToken = App.authToken || ""
+
+        return this.authToken;
+    }
+
     async ReadTicketList() {
 
         return fetch(this.apiURL + 'tickets.php', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.authTocken
+                'Authorization': 'Bearer ' + this.getToken()
             }
         });
     }
@@ -37,7 +44,7 @@ class APIAdapter {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.authTocken
+                'Authorization': 'Bearer ' + this.getToken()
             }
         });
     }
@@ -48,7 +55,7 @@ class APIAdapter {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.authTocken
+                'Authorization': 'Bearer ' + this.getToken()
             }
         });
     }
@@ -58,7 +65,7 @@ class APIAdapter {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.authTocken
+                'Authorization': 'Bearer ' + this.getToken()
             }
         });
     }
@@ -68,7 +75,7 @@ class APIAdapter {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.authTocken
+                'Authorization': 'Bearer ' + this.getToken()
             },
             body: JSON.stringify({
                 ticket_number: number,
