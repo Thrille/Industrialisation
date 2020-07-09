@@ -40,13 +40,13 @@ class UtilisateursManager extends Model{
   }
 
   //récupère tous les techniciens
-  public function getAllTechniciens(){
+  public function getAllTechniciens(){ 
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE ROLE_R_CODE= :role_code;');
     $req->execute(array(
       ':role_code' => 'T'
     ));
     $var = $req->fetch(PDO::FETCH_ASSOC);
-
+    print_r($var);
     if(is_array($var)){
       return new $this->sModel($var);
     }

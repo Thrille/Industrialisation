@@ -32,7 +32,7 @@ class Utilisateur extends Entity{
   }
 
   public function setU_MDP($U_MDP){
-    $this->U_MDR = $U_MDP;
+    $this->U_MDP = $U_MDP;
   }
 
   //GETTERS
@@ -48,7 +48,7 @@ class Utilisateur extends Entity{
     return $this->ROLE_R_CODE;
   }
   public function getU_MDP(){
-    return $this->U_MDR;
+    return $this->U_MDP;
   }
 }
 ?>
