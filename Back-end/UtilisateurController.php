@@ -18,4 +18,12 @@ class UtilisateurController{
         return Helpers::CollectionToJSON($utilisateurs);
     }
 
+    //récupération des droits en fonction du token
+    static function isTechnicien($hash){
+        self::$_utilisateursManager = new UtilisateursManager;
+        $bTechnicien = self::$_utilisateursManager->isTechnicien($hash);
+
+        return $bTechnicien;
+    }
+
 }
