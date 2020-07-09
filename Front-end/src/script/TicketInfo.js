@@ -42,6 +42,10 @@ class TicketInfo {
 
     constructor({ticket}) {
         this.ticket = ticket;
+
+        this.ticket.sortInterventionByDate()
+
+        console.log(this.ticket);
     }
 
     render() {

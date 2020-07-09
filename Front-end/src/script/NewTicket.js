@@ -22,7 +22,7 @@ class NewTicket {
         this.form = new TicketForm();
 
         this.modal = new Modal({
-            title: "Crétion d'un ticket",
+            title: "Création d'un ticket",
             element: this.form.render()
         });
 
