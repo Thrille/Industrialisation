@@ -11,8 +11,9 @@ class UtilisateurController{
 
     // Récupération de tous les Techniciens
     static function GetAllTechniciens(){
+
         self::$_utilisateursManager = new UtilisateursManager;
-        $utilisateurs = self::$_utilisateursManager->GetAllTechniciens();
+        $utilisateurs = self::$_utilisateursManager->getAllTechniciens();
 
         return Helpers::CollectionToJSON($utilisateurs);
     }

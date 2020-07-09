@@ -5,8 +5,39 @@ class TicketsManager extends Model{
 
   private $sModel = 'Ticket';
 
+/*--------------------------------OUTILS ------------------------------------*/
+
+  //utilisée dans getAllTickets() : créer un nouveau ticket à ajouter
+  //dans le tableau de tickets
+  private function ajoutTicketAuTableau($data){
+    $aNouvelleIntervention = array(
+      'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
+      'TYPE_INTERVENTION_TI_LIBELLE' => $data['TYPE_INTERVENTION_TI_LIBELLE'],
+      'I_DATE' => $data['I_DATE']
+    );
+
+    $aNouveauTicket = array(
+      'T_ID' => $data['T_ID'],
+      'T_NUMERO' => $data['T_NUMERO'],
+      'T_DATE_SAISIE' => $data['T_DATE_SAISIE'],
+      'T_DESCRIPTION' => $data['T_DESCRIPTION'],
+      'MATERIEL_M_ID' => $data['MATERIEL_M_ID'],
+      'MATERIEL_M_LIBELLE' => $data['MATERIEL_M_LIBELLE'],
+      'ETAT_E_CODE' => $data['ETAT_E_CODE'],
+      'ETAT_E_LIBELLE' => $data['ETAT_E_LIBELLE'],
+      'INTERVENTION' => array()
+    );
+    array_push($aNouveauTicket['INTERVENTION'], $aNouvelleIntervention);
+    return $aNouveauTicket;
+  }
+/*--------------------------------OUTILS ------------------------------------*/
+
   //récupère tous les tickets
+  //compare le resultat de la requete au tableau de tickets
+  //si le code du ticket est le même, il ajoute uniquement la nouvelle intervention
+  //au tableau d'interventions, sinon il ajoute tout le nouveau ticket.
   public function getAllTickets(){
+
     $req = $this->getBdd()->prepare('SELECT TICKET.T_NUMERO, TICKET.T_DATE_SAISIE, TICKET.T_DESCRIPTION, MATERIEL.M_LIBELLE AS MATERIEL_M_LIBELLE, ETAT.E_LIBELLE AS ETAT_E_LIBELLE, UTILISATEUR.U_IDENTIFIANT AS UTILISATEUR_U_IDENTIFIANT, TYPE_INTERVENTION.TI_LIBELLE AS TYPE_INTERVENTION_TI_LIBELLE, INTERVENTION.I_DATE, TICKET.T_ID, TICKET.MATERIEL_M_ID, TICKET.ETAT_E_CODE FROM TICKET JOIN INTERVENTION ON TICKET.T_ID = INTERVENTION.TICKET_T_ID JOIN UTILISATEUR ON INTERVENTION.UTILISATEUR_U_ID = UTILISATEUR.U_ID JOIN TYPE_INTERVENTION ON INTERVENTION.TYPE_INTERVENTION_TI_CODE = TYPE_INTERVENTION.TI_CODE JOIN MATERIEL ON TICKET.MATERIEL_M_ID = MATERIEL.M_ID JOIN ETAT ON TICKET.ETAT_E_CODE = ETAT.E_CODE ORDER BY TICKET.T_NUMERO;');
     $req->execute();
     $aTickets = array();
@@ -25,51 +56,16 @@ class TicketsManager extends Model{
             $b = true;
           }
           if($b === false){
-            $aNouvelleIntervention = array(
-              'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
-              'TYPE_INTERVENTION_TI_LIBELLE' => $data['TYPE_INTERVENTION_TI_LIBELLE'],
-              'I_DATE' => $data['I_DATE']
-            );
-            $aNouveauTicket = array(
-              'T_ID' => $data['T_ID'],
-              'T_NUMERO' => $data['T_NUMERO'],
-              'T_DATE_SAISIE' => $data['T_DATE_SAISIE'],
-              'T_DESCRIPTION' => $data['T_DESCRIPTION'],
-              'MATERIEL_M_ID' => $data['MATERIEL_M_ID'],
-              'MATERIEL_M_LIBELLE' => $data['MATERIEL_M_LIBELLE'],
-              'ETAT_E_CODE' => $data['ETAT_E_CODE'],
-              'ETAT_E_LIBELLE' => $data['ETAT_E_LIBELLE'],
-              'INTERVENTION' => array()
-            );
-            array_push($aNouveauTicket['INTERVENTION'], $aNouvelleIntervention);
+            $aNouveauTicket = $this->ajoutTicketAuTableau($data);
             array_push($aTickets, $aNouveauTicket);
           }
         }
       }
       else{
-        $aNouvelleIntervention = array(
-          'UTILISATEUR_U_IDENTIFIANT' => $data['UTILISATEUR_U_IDENTIFIANT'],
-          'TYPE_INTERVENTION_TI_LIBELLE' => $data['TYPE_INTERVENTION_TI_LIBELLE'],
-          'I_DATE' => $data['I_DATE']
-        );
-
-        $aNouveauTicket = array(
-          'T_ID' => $data['T_ID'],
-          'T_NUMERO' => $data['T_NUMERO'],
-          'T_DATE_SAISIE' => $data['T_DATE_SAISIE'],
-          'T_DESCRIPTION' => $data['T_DESCRIPTION'],
-          'MATERIEL_M_ID' => $data['MATERIEL_M_ID'],
-          'MATERIEL_M_LIBELLE' => $data['MATERIEL_M_LIBELLE'],
-          'ETAT_E_CODE' => $data['ETAT_E_CODE'],
-          'ETAT_E_LIBELLE' => $data['ETAT_E_LIBELLE'],
-          'INTERVENTION' => array()
-        );
-        array_push($aNouveauTicket['INTERVENTION'], $aNouvelleIntervention);
+        $aNouveauTicket = $this->ajoutTicketAuTableau($data);
         array_push($aTickets, $aNouveauTicket);
       }
-
     }
-
     return $aTickets;
     $req->closeCursor();
   }
