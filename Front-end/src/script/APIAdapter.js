@@ -8,7 +8,16 @@ class APIAdapter {
     }
 
     async Auth({login, password}) {
-        
+        return fetch(this.apiURL + 'auth.php', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: {
+                login: login,
+                password: password
+            }
+        });
     }
 
     async ReadTicketList() {

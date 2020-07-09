@@ -48,8 +48,6 @@ class TicketElement {
     constructor({ticket}) {
         this.ticket = ticket
 
-        console.log(this.ticket);
-
         this.ticket.sortInterventionByDate()
     }
 
@@ -71,9 +69,9 @@ class TicketElement {
         this.deviceCodeLabelTextNode = document.createTextNode("Type de matériel en cause");
 
         this.numberTextNode = document.createTextNode(this.ticket.number);
-        this.actorEntryTextNode = document.createTextNode(this.ticket.getEntryIntervention().user || "");
-        this.entryDateTextNode = document.createTextNode(this.ticket.getEntryIntervention().date.toLocaleString() || "");
-        this.resolveDateTextNode = document.createTextNode(this.ticket.getResolvedIntevention().date.toLocaleString() || "");
+        this.actorEntryTextNode = document.createTextNode((this.ticket.getEntryIntervention())? this.ticket.getEntryIntervention().user : "");
+        this.entryDateTextNode = document.createTextNode((this.ticket.getEntryIntervention())? this.ticket.getEntryIntervention().date.toLocaleString() : "");
+        this.resolveDateTextNode = document.createTextNode((this.ticket.getResolveIntervention())? this.ticket.getResolveIntervention().date.toLocaleString() : "");
         this.stateCodeTextNode = document.createTextNode(this.ticket.stateName);
         this.deviceCodeTextNode = document.createTextNode(this.ticket.deviceName);
 

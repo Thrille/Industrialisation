@@ -36,12 +36,10 @@ class Ticket {
             return (i.type === 1)
         })
 
-        console.log(it)
-
         return it
     }
 
-    getResorveIntervention() {
+    getResolveIntervention() {
         return this.interventions.find(i => {
             return (i.type === 3)
         })
