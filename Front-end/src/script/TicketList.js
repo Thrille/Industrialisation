@@ -29,9 +29,12 @@ class TicketList {
                         this.tickets.push(new Ticket({
                             id: t["T_ID"], 
                             number: t["T_NUMERO"], 
-                            description: t["T_DESCRIPTION"], 
+                            description: t["T_DESCRIPTION"],
+                            interventions: [], 
                             stateCode: t["ETAT_E_CODE"], 
-                            deviceCode: t["MATERIEL_M_ID"]
+                            stateName: t["MATERIEL_M_LIBELLE"],
+                            deviceCode: t["MATERIEL_M_ID"],
+                            deviceName: t["ETAT_E_LIBELLE"]
                         }));
                     });
 

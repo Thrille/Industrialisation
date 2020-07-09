@@ -74,8 +74,8 @@ class TicketInfo {
         this.entryDateTextNode = document.createTextNode("");
         this.resolveDateTextNode = document.createTextNode("");
         this.descriptionTextNode = document.createTextNode(this.ticket.description);
-        this.stateCodeTextNode = document.createTextNode(this.ticket.stateCode);
-        this.deviceCodeTextNode = document.createTextNode(this.ticket.deviceCode);
+        this.stateCodeTextNode = document.createTextNode(this.ticket.stateName);
+        this.deviceCodeTextNode = document.createTextNode(this.ticket.deviceName);
 
         this.numberLabelDataRow = document.createElement("td");
         this.numberDataRow = document.createElement("td");
