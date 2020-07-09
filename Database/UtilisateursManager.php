@@ -40,7 +40,7 @@ class UtilisateursManager extends Model{
   }
 
   //récupère tous les techniciens
-  public function getAllTechniciens(){ 
+  public function getAllTechniciens(){
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE ROLE_R_CODE= :role_code;');
     $req->execute(array(
       ':role_code' => 'T'
@@ -48,13 +48,28 @@ class UtilisateursManager extends Model{
     $var = [];
     while($data = $req->fetch(PDO::FETCH_ASSOC)){
 
-      $var[] = new $this->sModel($data);  
+      $var[] = new $this->sModel($data);
     }
 
     if(is_array($var)){
       return $var;
     }
     return NULL;
+  }
+
+  public function isTechnicien($JA_HASH){
+    $req = $this->getBdd()->prepare('SELECT UTILISATEUR.ROLE_R_CODE FROM JETON_AUTHENTIFICATION JOIN UTILISATEUR ON JETON_AUTHENTIFICATION.UTILISATEUR_U_ID = UTILISATEUR.U_ID WHERE JETON_AUTHENTIFICATION.JA_HASH = :JA_HASH;');
+    $req->execute(array(
+      ':JA_HASH' => $JA_HASH
+    ));
+    $var = $req->fetch(PDO::FETCH_ASSOC);
+
+    if($var['ROLE_R_CODE'] == 'T'){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
 ?>
