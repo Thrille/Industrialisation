@@ -12,7 +12,7 @@ class RolesManager extends Model{
 
   //récupère un role par rapport à son code
   public function getRole($code){
-    $req = $this->getBdd()->prepare('SELECT * FROM TOLE WHERE R_CODE= :code;');
+    $req = $this->getBdd()->prepare('SELECT * FROM ROLE WHERE R_CODE= :code;');
     $req->execute(array(
       ':code' => $code
     ));
