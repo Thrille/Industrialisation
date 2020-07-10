@@ -90,16 +90,9 @@ class Login {
         this.modal.enableCloseAction();
         this.modal.close();
         App.logged = true;
-        console.log(App)
-
-        // on génère la liste des tickets
-        const ticketList = new TicketList();
-
-        // et le bouton de création d'un ticket
-        const newTicketButton = new NewTicket();
 
         // on charge les données de la liste des tickets
-        ticketList.loadData()
+        App.ticketList.loadData()
     }
 }
 

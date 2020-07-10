@@ -67,6 +67,12 @@ td {
     width: 50%;
 }
 
+select {
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist;
+    appearance: menulist;
+}
+
 .modal {
     position: fixed;
     top: 0;
