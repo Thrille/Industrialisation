@@ -11,15 +11,15 @@ class TypesInterventionManager extends Model{
   }
 
   //récupère un type d'intervention parr rapport à son code
-  public function getType_Intervention($code){
+  public function getType_Intervention($iCode){
     $req = $this->getBdd()->prepare('SELECT * FROM TYPE_INTERVENTION WHERE TI_CODE= :code;');
     $req->execute(array(
-      ':code' => $code
+      ':code' => $iCode
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-    if(is_array($var)){
-      return new $this->sModel($var);
+    if(is_array($aData)){
+      return new $this->sModel($aData);
     }
 
     return NULL;

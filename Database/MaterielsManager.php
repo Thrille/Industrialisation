@@ -11,14 +11,14 @@ class MaterielsManager extends Model{
   }
 
   //récupère un matériel par rapport à son id
-  public function getMateriel($id){
+  public function getMateriel($iId){
     $req = $this->getBdd()->prepare('SELECT * FROM MATERIEL WHERE M_ID= :id;');
     $req->execute(array(
-      ':id' => $id
+      ':id' => $iId
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
-    if(is_array($var)){
-      return new $this->sModel($var);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
+    if(is_array($aData)){
+      return new $this->sModel($aData);
     }
 
     return NULL;
