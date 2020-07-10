@@ -1,6 +1,7 @@
 <?php
 require_once __ROOT__.'/Database/Model.php';
 require_once __ROOT__.'/Database/Intervention.php';
+require_once __ROOT__.'/Database/TicketsManager.php';
 
 class InterventionsManager extends Model{
 
@@ -73,7 +74,8 @@ class InterventionsManager extends Model{
       $req->execute();
       $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-      return $this->getTicket(intval($aData['ID']));
+      $_ticketsManager = new TiekctsManager;
+      return $_ticketsManager->getTicket(intval($aData['ID']));
     }
     else{
       return false;
