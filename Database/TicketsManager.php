@@ -142,10 +142,10 @@ class TicketsManager extends Model{
       //récupère l'id de l'utilisateur associé au token de aParam
       $req2 = $this->getBdd()->prepare('SELECT UTILISATEUR_U_ID FROM JETON_AUTHENTIFICATION WHERE JA_HASH = :hash;');
       $req2->execute(array(
-        ':hash' => $aparam['token']
+        ':hash' => $aParam['token']
       ));
       $aData2 = $req2->fetch(PDO::FETCH_ASSOC);
-      
+
       //paramètres pour creation intervention 1
       $aParam2 = array(
         'utilisateurId'=> $aData2['UTILISATEUR_U_ID'],
