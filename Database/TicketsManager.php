@@ -146,7 +146,7 @@ class TicketsManager extends Model{
       );
       //paramètres pour création intervention 2
       $aParam3 = array(
-        'utilisateurId'=> $aParam['intervenantId'],
+        'utilisateurId'=> $aParam['technicianId'],
         'ticketId' => $aData['ID'],
         'typeInterventionCode' => 2,
         'date' => now()
