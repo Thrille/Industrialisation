@@ -1,6 +1,7 @@
 import APIAdapter from "./APIAdapter.js";
 import Ticket from "./Ticket.js";
 import TicketElement from './TicketElement.js';
+import Intervention from "./Intervention.js";
 
 class TicketList {
 
@@ -16,22 +17,38 @@ class TicketList {
 
         this.render();
         this.apiAdapter = new APIAdapter();
-        this.loadData();
     }
 
     loadData() {
+
+        this.tickets = [];
         this.apiAdapter.ReadTicketList().then(response => {
 
             if (response.ok) {
                 response.json().then(data => {
 
                     data.forEach(t => {
+
+                        let interventions = [];
+
+                        t["INTERVENTION"].forEach(i => {
+                            interventions.push(new Intervention({
+                                user: i["UTILISATEUR_U_IDENTIFIANT"], 
+                                type: Number.parseInt(i["TYPE_INTERVENTION_TI_CODE"]), 
+                                typeName: i["TYPE_INTERVENTION_TI_LIBELLE"], 
+                                date: i["I_DATE"]
+                            }))
+                        })
+
                         this.tickets.push(new Ticket({
-                            id: t["T_ID"], 
+                            id: Number.parseInt(t["T_ID"]), 
                             number: t["T_NUMERO"], 
-                            description: t["T_DESCRIPTION"], 
+                            description: t["T_DESCRIPTION"],
+                            interventions: interventions, 
                             stateCode: t["ETAT_E_CODE"], 
-                            deviceCode: t["MATERIEL_M_ID"]
+                            stateName: t["ETAT_E_LIBELLE"],
+                            deviceCode: t["MATERIEL_M_ID"],
+                            deviceName: t["MATERIEL_M_LIBELLE"]
                         }));
                     });
 

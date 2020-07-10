@@ -11,48 +11,43 @@ class TicketController{
 
     // Création d'un nouveau ticket
     //a besoin de l'id du createur et l'id du prochain intervenant
-    static function Create(array $param){
+    static function Create(array $aParam){
         self::$_ticketsManager = new TicketsManager;
-        $bCreate = self::$_ticketsManager->createTicket($param);
-
-        if (is_bool($ticket)) {
-            return json_encode($ticket);
-        }
-
+        $bCreate = self::$_ticketsManager->createTicket($aParam);
         return $bCreate->toJSON();
     }
 
     // Récupération de tous les ticket
     static function GetAllTickets(){
         self::$_ticketsManager = new TicketsManager;
-        $tickets = self::$_ticketsManager->getAllTickets();
+        $aTickets = self::$_ticketsManager->getAllTickets();
 
-        return Helpers::CollectionToJSON($tickets);
+        return Helpers::CollectionToJSON($aTickets);
     }
 
     //Récupération d'un ticket précis
-    static function GetTicket($id){
+    static function GetTicket($iId){
         self::$_ticketsManager = new TicketsManager;
-        $ticket = self::$_ticketsManager->getTicket($id);
-        return $ticket->toJSON();
+        $oTicket = self::$_ticketsManager->getTicket($iId);
+        return $oTicket->toJSON();
     }
 
     //Mise à jour du ticket
-    static function Update($id, array $param){
+    static function Update($iId, array $aParam){
         self::$_ticketsManager = new TicketsManager;
-        $ticket = self::$_ticketsManager->updateTicket($id,$param);
+        $oTicket = self::$_ticketsManager->updateTicket($iId,$aParam);
 
-        if ($ticket === NULL) {
-            return json_encode($ticket);
+        if ($oTicket === NULL) {
+            return json_encode($oTicket);
         }
 
-        return $ticket->toJSON();
+        return $oTicket->toJSON();
     }
 
     //Suppression du ticket
-    static function Delete($id){
+    static function Delete($iId){
         self::$_ticketsManager = new TicketsManager;
-        $bDelete = self::$_ticketsManager->deleteTicket($id);
+        $bDelete = self::$_ticketsManager->deleteTicket($iId);
 
         return json_encode($bDelete);
     }

@@ -42,6 +42,10 @@ class TicketInfo {
 
     constructor({ticket}) {
         this.ticket = ticket;
+
+        this.ticket.sortInterventionByDate()
+
+        console.log(this.ticket);
     }
 
     render() {
@@ -68,14 +72,14 @@ class TicketInfo {
         this.deviceCodeLabelTextNode = document.createTextNode("Type de matériel en cause");
 
         this.numberTextNode = document.createTextNode(this.ticket.number);
-        this.actorEntryTextNode = document.createTextNode("");
-        this.actorResolveTextNode = document.createTextNode("");
-        this.actorResolvedTextNode = document.createTextNode("");
-        this.entryDateTextNode = document.createTextNode("");
-        this.resolveDateTextNode = document.createTextNode("");
+        this.actorEntryTextNode = document.createTextNode((this.ticket.getEntryIntervention())? this.ticket.getEntryIntervention().user : "");
+        this.actorResolveTextNode = document.createTextNode((this.ticket.getResolveIntervention())? this.ticket.getResolveIntervention().user : "");
+        this.actorResolvedTextNode = document.createTextNode((this.ticket.getResolvedIntevention())? this.ticket.getResolvedIntevention().user : "");
+        this.entryDateTextNode = document.createTextNode((this.ticket.getEntryIntervention())? this.ticket.getEntryIntervention().date.toLocaleString() : "");
+        this.resolveDateTextNode = document.createTextNode((this.ticket.getResolveIntervention())? this.ticket.getResolveIntervention().date.toLocaleString() : "");
         this.descriptionTextNode = document.createTextNode(this.ticket.description);
-        this.stateCodeTextNode = document.createTextNode(this.ticket.stateCode);
-        this.deviceCodeTextNode = document.createTextNode(this.ticket.deviceCode);
+        this.stateCodeTextNode = document.createTextNode(this.ticket.stateName);
+        this.deviceCodeTextNode = document.createTextNode(this.ticket.deviceName);
 
         this.numberLabelDataRow = document.createElement("td");
         this.numberDataRow = document.createElement("td");

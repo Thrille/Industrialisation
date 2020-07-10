@@ -7,11 +7,13 @@ class Modal {
     title;
     frameHeader;
     frameTitle;
+    closeAction;
 
     constructor({title, element}) {
         this.title = title;
         this.element = element;
         this.modalManager = document.getElementById("modal-manager");
+        this.closeAction = true;
     }
 
     render() {
@@ -25,7 +27,7 @@ class Modal {
         this.frameContent = document.createElement("section");
         this.frameHeader = document.createElement("h1");
         this.frameTitle = document.createTextNode(this.title);
-        this.frameHeadWrapper = document.createElement("div");
+        this.frameHeadWrapper = document.createElement("section");
 
         this.wrapperNode.classList.add("modal");
         this.frame.classList.add("frame");
@@ -37,7 +39,11 @@ class Modal {
         this.closeButton.appendChild(this.closeButtonText);
         this.frameHeader.appendChild(this.frameTitle);
         this.frameHeadWrapper.appendChild(this.frameHeader);
-        this.frameHeadWrapper.appendChild(this.closeButton);
+
+        if (this.closeAction) {
+            this.frameHeadWrapper.appendChild(this.closeButton);
+        }
+        
         this.frame.appendChild(this.frameHeadWrapper);
         this.frame.appendChild(this.frameContent);
         this.wrapperNode.appendChild(this.frame);
@@ -53,13 +59,17 @@ class Modal {
     }
 
     close() {
-        console.log("close");
-        this.modalManager.innerHTML = "";
+        if (this.closeAction) {
+            this.modalManager.innerHTML = "";
+        }
+        
     }
 
     bindEvents() {
         if (this.closeButton) {
-            this.closeButton.addEventListener("click", this.close.bind(this));
+            if (this.closeAction) {
+                this.closeButton.addEventListener("click", this.close.bind(this));
+            }
         }
 
         if (this.wrapperNode) {
@@ -71,6 +81,20 @@ class Modal {
                 event.stopPropagation();
             });
         }
+    }
+
+    disableCloseAction() {
+        this.close();
+        this.closeAction = false;
+
+        this.render();
+    }
+
+    enableCloseAction() {
+        this.close();
+        this.closeAction = true;
+
+        this.render();
     }
 }
 
