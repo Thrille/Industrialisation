@@ -39,10 +39,10 @@ class TicketsManager extends Model{
   //au tableau d'interventions, sinon il ajoute tout le nouveau ticket.
   public function getAllTickets(){
 
-    $oReq = $this->getBdd()->prepare('SELECT TICKET.T_NUMERO, TICKET.T_DATE_SAISIE, TICKET.T_DESCRIPTION, MATERIEL.M_LIBELLE AS MATERIEL_M_LIBELLE, ETAT.E_LIBELLE AS ETAT_E_LIBELLE, UTILISATEUR.U_IDENTIFIANT AS UTILISATEUR_U_IDENTIFIANT, TYPE_INTERVENTION.TI_LIBELLE AS TYPE_INTERVENTION_TI_LIBELLE, TYPE_INTERVENTION.TI_CODE AS TYPE_INTERVENTION_TI_CODE, INTERVENTION.I_DATE, TICKET.T_ID, TICKET.MATERIEL_M_ID, TICKET.ETAT_E_CODE FROM TICKET JOIN INTERVENTION ON TICKET.T_ID = INTERVENTION.TICKET_T_ID JOIN UTILISATEUR ON INTERVENTION.UTILISATEUR_U_ID = UTILISATEUR.U_ID JOIN TYPE_INTERVENTION ON INTERVENTION.TYPE_INTERVENTION_TI_CODE = TYPE_INTERVENTION.TI_CODE JOIN MATERIEL ON TICKET.MATERIEL_M_ID = MATERIEL.M_ID JOIN ETAT ON TICKET.ETAT_E_CODE = ETAT.E_CODE ORDER BY TICKET.T_NUMERO;');
-    $oReq->execute();
+    $req = $this->getBdd()->prepare('SELECT TICKET.T_NUMERO, TICKET.T_DATE_SAISIE, TICKET.T_DESCRIPTION, MATERIEL.M_LIBELLE AS MATERIEL_M_LIBELLE, ETAT.E_LIBELLE AS ETAT_E_LIBELLE, UTILISATEUR.U_IDENTIFIANT AS UTILISATEUR_U_IDENTIFIANT, TYPE_INTERVENTION.TI_LIBELLE AS TYPE_INTERVENTION_TI_LIBELLE, TYPE_INTERVENTION.TI_CODE AS TYPE_INTERVENTION_TI_CODE, INTERVENTION.I_DATE, TICKET.T_ID, TICKET.MATERIEL_M_ID, TICKET.ETAT_E_CODE FROM TICKET JOIN INTERVENTION ON TICKET.T_ID = INTERVENTION.TICKET_T_ID JOIN UTILISATEUR ON INTERVENTION.UTILISATEUR_U_ID = UTILISATEUR.U_ID JOIN TYPE_INTERVENTION ON INTERVENTION.TYPE_INTERVENTION_TI_CODE = TYPE_INTERVENTION.TI_CODE JOIN MATERIEL ON TICKET.MATERIEL_M_ID = MATERIEL.M_ID JOIN ETAT ON TICKET.ETAT_E_CODE = ETAT.E_CODE ORDER BY TICKET.T_NUMERO;');
+    $req->execute();
     $aTickets = array();
-    while($aData = $oReq->fetch(PDO::FETCH_ASSOC)){
+    while($aData = $req->fetch(PDO::FETCH_ASSOC)){
       $bVerif = false;
       $iNumTicket = $aData['T_NUMERO'];
       //Verifier si le tableau est vide, pour la première insertion
@@ -76,17 +76,17 @@ class TicketsManager extends Model{
     }
     //retourne le tableau de ticket mis en ordre
     return $aTickets;
-    $oReq->closeCursor();
+    $req->closeCursor();
   }
 
   //récupère un ticket par rapport à son id
   public function getTicket(int $iId)
   {
-    $oReq = $this->getBdd()->prepare('SELECT * FROM TICKET WHERE T_ID= :id;');
-    $oReq->execute(array(
+    $req = $this->getBdd()->prepare('SELECT * FROM TICKET WHERE T_ID= :id;');
+    $req->execute(array(
       ':id' => $iId
     ));
-    $aData = $oReq->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
     if (is_array($aData)) {
       return new $this->sModel($aData);
@@ -98,8 +98,8 @@ class TicketsManager extends Model{
   //modifie le ticket avec l'id correspondant + retourne le ticket modifié
   public function updateTicket(int $iId, array $aParam){
 
-    $oReq = $this->getBdd()->prepare('UPDATE TICKET SET T_NUMERO = :number, T_DESCRIPTION = :description, MATERIEL_M_ID = :deviceCode, ETAT_E_CODE = :deviceCode WHERE T_ID = :id;');
-    $oReq->execute(array(
+    $req = $this->getBdd()->prepare('UPDATE TICKET SET T_NUMERO = :number, T_DESCRIPTION = :description, MATERIEL_M_ID = :deviceCode, ETAT_E_CODE = :deviceCode WHERE T_ID = :id;');
+    $req->execute(array(
       ':number' => $aParam['number'],
       ':description' => $aParam['description'],
       ':deviceCode' => $aParam['deviceCode'],
@@ -111,8 +111,8 @@ class TicketsManager extends Model{
 
   //supprime le ticket avec l'id correspondant + retourne un true si supression effectué et false sinon
   public function deleteTicket(int $iId){
-    $oReq = $this->getBdd()->prepare('DELETE FROM INTERVENTION WHERE TICKET_T_ID = :id; DELETE FROM TICKET WHERE T_ID = :id;');
-    $iCount = $oReq->execute(array(
+    $req = $this->getBdd()->prepare('DELETE FROM INTERVENTION WHERE TICKET_T_ID = :id; DELETE FROM TICKET WHERE T_ID = :id;');
+    $iCount = $req->execute(array(
       ':id' => $iId
     ));
     if($iCount != 0){
@@ -125,8 +125,8 @@ class TicketsManager extends Model{
 
   //créer un nouveau ticket
   public function createTicket(array $aParam){
-    $oReq = $this->getBdd()->prepare('INSERT INTO TICKET (T_NUMERO, T_DATE_SAISIE, T_DESCRIPTION, MATERIEL_M_ID, ETAT_E_CODE) VALUES (:number, now(), :description, :deviceCode, :stateCode);');
-    $iCount = $oReq->execute(array(
+    $req = $this->getBdd()->prepare('INSERT INTO TICKET (T_NUMERO, T_DATE_SAISIE, T_DESCRIPTION, MATERIEL_M_ID, ETAT_E_CODE) VALUES (:number, now(), :description, :deviceCode, :stateCode);');
+    $iCount = $req->execute(array(
       ':number' => $aParam['number'],
       ':description' => $aParam['description'],
       ':deviceCode' => $aParam['deviceCode'],
@@ -134,9 +134,9 @@ class TicketsManager extends Model{
     ));
     if($iCount != 0){
 
-      $oReq = $this->getBdd()->prepare('SELECT LAST_INSERT_ID() AS ID;');
-      $oReq->execute();
-      $aData = $oReq->fetch(PDO::FETCH_ASSOC);
+      $req = $this->getBdd()->prepare('SELECT LAST_INSERT_ID() AS ID;');
+      $req->execute();
+      $aData = $req->fetch(PDO::FETCH_ASSOC);
       //paramètres pour creation intervention 1
       $aParam2 = array(
         'utilisateurId'=> $aParam['createurId'],
@@ -146,7 +146,7 @@ class TicketsManager extends Model{
       );
       //paramètres pour création intervention 2
       $aParam3 = array(
-        'utilisateurId'=> $aParam['intervenantId'],
+        'utilisateurId'=> $aParam['technicianId'],
         'ticketId' => $aData['ID'],
         'typeInterventionCode' => 2,
         'date' => now()
