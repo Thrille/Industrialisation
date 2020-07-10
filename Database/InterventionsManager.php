@@ -74,7 +74,7 @@ class InterventionsManager extends Model{
       $req->execute();
       $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-      $_ticketsManager = new TiekctsManager;
+      $_ticketsManager = new TicketsManager;
       return $_ticketsManager->getTicket(intval($aData['ID']));
     }
     else{
