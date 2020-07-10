@@ -1,6 +1,7 @@
 import Modal from './Modal.js';
 import TicketInfo from './TicketInfo.js';
 
+// Créer une représentation graphique d'un ticket
 class TicketElement {
 
     ticket;
@@ -51,6 +52,7 @@ class TicketElement {
         this.ticket.sortInterventionByDate()
     }
 
+    // on créer le tableau d'information
     render() {
         this.table = document.createElement("table");
 
@@ -143,6 +145,7 @@ class TicketElement {
         return this.wrapperNode;
     }
 
+    // si l'élément doit etre intégré à une liste, on modifie le rendu
     renderInListContext() {
 
         if(!this.wrapperNode) {
@@ -163,6 +166,7 @@ class TicketElement {
         return this.wrapperNode;
     }
 
+    // permet d'associer les évenements
     bindEvents() {
         if(this.wrapperNode) {
 
@@ -172,6 +176,7 @@ class TicketElement {
         }
     }
 
+    // évenement de click
     clickEvent(event) {
 
         this.ticketInfo = new TicketInfo({ticket: this.ticket});

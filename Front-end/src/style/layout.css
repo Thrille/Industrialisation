@@ -19,13 +19,7 @@ body {
 }
 
 *:not(body) {
-    font-size: 120%;
-}
-
-@media (width >= 600px) {
-    *:not(body) {
-        font-size: 100%;
-    }
+    font-size: 100%;
 }
 
 
@@ -54,6 +48,23 @@ main {
 
 textarea {
     resize: none;
+}
+
+table, tr {
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+}
+
+td:first-child {
+    text-align: right;
+    padding-right: 1em;
+}
+
+td {
+    width: 50%;
 }
 
 .modal {

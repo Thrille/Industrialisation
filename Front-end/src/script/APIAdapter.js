@@ -1,13 +1,25 @@
 import App from "./App.js"
 
+/**
+ * La class APIAdapter regroupe toute les intéractions avec l'API
+ */
 class APIAdapter {
 
     apiURL;
 
     constructor() {
+        // on définit l'url de l'api
         this.apiURL = (window.location.origin + window.location.pathname).replace('index.html', '') + 'api/';
     }
 
+    // retourne le token de connexion
+    getToken() {
+        this.authToken = App.authToken || ""
+
+        return this.authToken;
+    }
+
+    // fonction d'autentification, permet de récupérer le token de connexion
     async Auth({login, password}) {
         return fetch(this.apiURL + 'auth.php', {
             method: 'POST',
@@ -21,12 +33,8 @@ class APIAdapter {
         });
     }
 
-    getToken() {
-        this.authToken = App.authToken || ""
-
-        return this.authToken;
-    }
-
+    
+    // Permet d'obtenir la liste des tickets
     async ReadTicketList() {
 
         return fetch(this.apiURL + 'tickets.php', {
@@ -38,6 +46,7 @@ class APIAdapter {
         });
     }
 
+    // Permet de lire la liste des materiels
     async ReadStateList() {
 
         return fetch(this.apiURL + 'devices.php', {
@@ -49,6 +58,7 @@ class APIAdapter {
         });
     }
 
+    // Permet de lire la liste des états d'un ticket
     async ReadStateList() {
 
         return fetch(this.apiURL + 'states.php', {
@@ -60,6 +70,7 @@ class APIAdapter {
         });
     }
 
+    // On obtient les informations d'un ticket
     async ReadTicketById(id) {
         return fetch(this.apiURL + 'ticket.php?id=' + id, {
             method: 'GET',
@@ -70,6 +81,7 @@ class APIAdapter {
         });
     }
 
+    // Création d'un nouveau ticket
     async CreateNewTicket({number, description, stateCode, deviceCode}) {
         return fetch(this.apiURL + 'ticket.php', {
             method: 'POST',
@@ -86,10 +98,12 @@ class APIAdapter {
         });
     }
 
+    // Mise à jour d'un ticket
     async UpdateTicketById({id, number, description, stateCode, deviceCode}) {
         
     }
 
+    // Suppression d'un ticket
     async DeleteTicketById(id) {
         
     }

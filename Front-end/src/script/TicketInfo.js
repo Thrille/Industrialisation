@@ -1,3 +1,4 @@
+// classe affichant les informations du ticket
 class TicketInfo {
 
     wrapperNode;
@@ -48,6 +49,8 @@ class TicketInfo {
         console.log(this.ticket);
     }
 
+
+    // affiche le rendu
     render() {
         this.table = document.createElement("table");
 

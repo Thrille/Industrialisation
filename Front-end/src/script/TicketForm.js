@@ -2,6 +2,7 @@ import APIAdapter from "./APIAdapter.js";
 import State from "./State.js";
 import Device from "./Device.js";
 
+// formulaire de création et d'édition de ticket
 class TicketForm {
 
     wrapperNode;
@@ -23,6 +24,7 @@ class TicketForm {
         this.apiAdapter = new APIAdapter();
     }
 
+    // rendu du formulaire
     render() {
         this.wrapperNode = document.createElement("form");
 
@@ -72,6 +74,7 @@ class TicketForm {
         return this.wrapperNode;
     }
 
+    // charge les données à l'aide de l'APIAdapter
     loadData() {
 
         Promise.all([this.apiAdapter.ReadStateList(), this.apiAdapter.ReadStateList()]).then(values => {
@@ -108,6 +111,7 @@ class TicketForm {
         
     }
 
+    // associe les évenements
     bindEvents() {
         if(this.validateButton) {
 
@@ -117,6 +121,7 @@ class TicketForm {
         }
     }
 
+    // evénement lorsqu'on valide le formulaire
     onFormValidation() {
 
         console.log("click")

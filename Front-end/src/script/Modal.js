@@ -1,3 +1,5 @@
+
+// classe permettant de créer une fenetre modale
 class Modal {
 
     modalManager;
@@ -16,6 +18,7 @@ class Modal {
         this.closeAction = true;
     }
 
+    // on génère le rendu de la modale
     render() {
 
         this.close();
@@ -54,10 +57,12 @@ class Modal {
         return this.wrapperNode;
     }
 
+    // ouvre la modale
     open() {
         this.render();
     }
 
+    // ferme la modale
     close() {
         if (this.closeAction) {
             this.modalManager.innerHTML = "";
@@ -65,6 +70,7 @@ class Modal {
         
     }
 
+    // associe les évenements
     bindEvents() {
         if (this.closeButton) {
             if (this.closeAction) {
@@ -83,6 +89,7 @@ class Modal {
         }
     }
 
+    // désactive les actions de fermeture
     disableCloseAction() {
         this.close();
         this.closeAction = false;
@@ -90,6 +97,7 @@ class Modal {
         this.render();
     }
 
+    // active les actions de fermeture
     enableCloseAction() {
         this.close();
         this.closeAction = true;

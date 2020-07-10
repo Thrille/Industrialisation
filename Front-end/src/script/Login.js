@@ -4,12 +4,14 @@ import NewTicket from './NewTicket.js'
 import App from './App.js'
 import APIAdapter from "./APIAdapter.js";
 
+// classe de connection
 class Login {
 
     modal;
     wrapperNode;
 
     constructor() {
+        // oncontruit une modal
         this.modal = new Modal({
             title: "Connexion",
             element: this.render()
@@ -17,11 +19,16 @@ class Login {
 
         this.modal.open();
 
+        // cette modal ne pourra pas être fermée
         this.modal.disableCloseAction();
 
+        // on instancie la classe de gestion de l'API
         this.APIAdapter = new APIAdapter();
     }
+
+    // on génère le rendu du formulaire
     render() {
+
         this.wrapperNode = document.createElement("form");
 
         this.loginInput = document.createElement("input")
@@ -54,18 +61,15 @@ class Login {
         return this.wrapperNode;
     }
 
+    // associe les évenements
     bindEvents() {
         if(this.validationButton) {
             this.validationButton.addEventListener("click", this.onSubmit.bind(this))
         }
     }
 
+    // évenement lancé par la validation du formulaire
     onSubmit() {
-
-        console.log({
-            login: this.loginInput.value,
-            password: this.passwordInput.value
-        })
 
         this.APIAdapter.Auth({
             login: this.loginInput.value,
@@ -81,15 +85,20 @@ class Login {
         })
     }
 
+    // si la connection est un succes
     onLoginSuccess() {
         this.modal.enableCloseAction();
         this.modal.close();
         App.logged = true;
         console.log(App)
 
+        // on génère la liste des tickets
         const ticketList = new TicketList();
+
+        // et le bouton de création d'un ticket
         const newTicketButton = new NewTicket();
 
+        // on charge les données de la liste des tickets
         ticketList.loadData()
     }
 }
