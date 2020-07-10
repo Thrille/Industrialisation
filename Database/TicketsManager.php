@@ -1,6 +1,7 @@
 <?php
 require_once __ROOT__.'/Database/Model.php';
 require_once __ROOT__.'/Database/Ticket.php';
+require_once __ROOT__.'/Database/InterventionsManager.php';
 class TicketsManager extends Model{
 
   private $sModel = 'Ticket';
@@ -161,8 +162,9 @@ class TicketsManager extends Model{
         'date' => date('Y-m-d')
       );
       //création des interventions
-      $this->createIntervention($aParam2);
-      $this->createIntervention($aParam3);
+      $_interventionsManager = new InterventionsManager;
+      $_interventionsManager->createIntervention($aParam2);
+      $_interventionsManager->createIntervention($aParam3);
 
       //return le ticket créé
       return $this->getTicket(intval($aData['ID']));
