@@ -18,17 +18,17 @@ abstract class Model{
     return self::$bdd;
   }
 
-  protected function getAll($table, $obj){
-    $var = [];
+  protected function getAll($sTable, $sObj){
+    $aVar = [];
     $aResult = array();
-    $req = $this->getBdd()->prepare('SELECT * FROM ' .$table);
+    $req = $this->getBdd()->prepare('SELECT * FROM ' .$sTable);
     $req->execute();
-    while($data = $req->fetch(PDO::FETCH_ASSOC)){
+    while($aData = $req->fetch(PDO::FETCH_ASSOC)){
 
-      $var[] = new $obj($data);  
+      $aVar[] = new $sObj($aData);
     }
 
-    return $var;
+    return $aVar;
     $req->closeCursor();
   }
 }

@@ -11,17 +11,17 @@ class EtatsManager extends Model{
   }
 
   //récupère un etat par rapport à son code
-  public function getEtat($code){
+  public function getEtat($iCode){
     $req = $this->getBdd()->prepare('SELECT * FROM ETAT WHERE E_CODE = :code;');
     $req->execute(array(
-      ':code' => $code
+      ':code' => $iCode
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-    if(is_array($var)){
-      return new $this->sModel($var);
+    if(is_array($aData)){
+      return new $this->sModel($aData);
     }
-    
+
     return NULL;
   }
 }
