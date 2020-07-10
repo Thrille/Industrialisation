@@ -144,7 +144,7 @@ class TicketsManager extends Model{
       $req2->execute(array(
         ':hash' => $aparam['token']
       ));
-      $aData2 = req2->fetch(PDO::FETCH_ASSOC);
+      $aData2 = $req2->fetch(PDO::FETCH_ASSOC);
       
       //paramètres pour creation intervention 1
       $aParam2 = array(
