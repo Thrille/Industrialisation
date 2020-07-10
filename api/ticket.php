@@ -74,32 +74,49 @@
 
             $bValid = false;
 
+            $aRequestBody = json_decode(file_get_contents('php://input'), true);
+
+            
 
             // logique de validation du contenu de la requète
-            if (isset($_REQUEST['ticket_number'])) {
 
-                $sTicketNumber = strval($_REQUEST['ticket_number']);
+            if (isset(getallheaders()['Authorization'])) {
+                $sToken = str_replace('Bearer ', '', getallheaders()['Authorization']);
 
-                if (strlen($sTicketNumber) > 0) {
+                if (strlen($sToken) > 0) {
+                    if (isset($aRequestBody['ticket_number'])) {
 
-                    if (isset($_REQUEST['ticket_description'])) {
-
-                        $sTicketDescription = strval($_REQUEST['ticket_description']);
-    
-                        if (strlen($sTicketDescription) > 0) {
-    
-                            if (isset($_REQUEST['ticket_state_code'])) {
-    
-                                $sTicketStateCode = strval($_REQUEST['ticket_state_code']);
+                        $sTicketNumber = strval($aRequestBody['ticket_number']);
         
-                                if (strlen($sTicketStateCode) > 0) {
+                        if (strlen($sTicketNumber) > 0) {
         
-                                    if (isset($_REQUEST['ticket_device_code'])) {
+                            if (isset($aRequestBody['ticket_description'])) {
         
-                                        $sTicketDeviceCode = strval($_REQUEST['ticket_device_code']);
+                                $sTicketDescription = strval($aRequestBody['ticket_description']);
             
-                                        if (strlen($sTicketDeviceCode) > 0) {
-                                            $bValid = true;
+                                if (strlen($sTicketDescription) > 0) {
+            
+                                    if (isset($aRequestBody['ticket_state_code'])) {
+            
+                                        $sTicketStateCode = strval($aRequestBody['ticket_state_code']);
+                
+                                        if (strlen($sTicketStateCode) > 0) {
+                
+                                            if (isset($aRequestBody['ticket_device_code'])) {
+                
+                                                $iTicketDeviceCode = intval($aRequestBody['ticket_device_code']);
+                    
+                                                if ($iTicketDeviceCode > 0) {
+        
+                                                    if (isset($aRequestBody['ticket_technician'])) {
+                                                        $iTicketTechnicianId = intval($aRequestBody['ticket_technician']);
+        
+                                                        if ($iTicketTechnicianId > 0) {
+                                                            $bValid = true;
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -108,6 +125,7 @@
                     }
                 }
             }
+            
 
             if ($bValid) {
 
@@ -116,7 +134,9 @@
                     'number'    =>  $sTicketNumber,
                     'description'   =>  $sTicketDescription,
                     'stateCode' =>  $sTicketStateCode,
-                    'deviceCode'    =>  $sTicketDeviceCode
+                    'deviceCode'    =>  $iTicketDeviceCode,
+                    'technicianId'  => $iTicketTechnicianId,
+                    'token' => $sToken
                 );
 
                 // on lance l'action de création du ticket

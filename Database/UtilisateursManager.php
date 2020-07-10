@@ -11,30 +11,30 @@ class UtilisateursManager extends Model{
   }
 
   //récupère un utilisateur par rapport à son id
-  public function getUtilisateur($id)
+  public function getUtilisateur($iId)
   {
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE U_ID= :id;');
     $req->execute(array(
-      ':id' => $id
+      ':id' => $iId
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-    if(is_array($var)){
-      return new $this->sModel($var);
+    if(is_array($aData)){
+      return new $this->sModel($aData);
     }
     return NULL;
   }
 
   //récupère un utilisateur par rapport à son identifiant
-  public function getUtilisateurByIdentifiant($identifiant){
+  public function getUtilisateurByIdentifiant($iIdentifiant){
     $req = $this->getBdd()->prepare('SELECT * FROM UTILISATEUR WHERE U_IDENTIFIANT= :identifiant;');
     $req->execute(array(
-      ':identifiant' => $identifiant
+      ':identifiant' => $iIdentifiant
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-    if(is_array($var)){
-      return new $this->sModel($var);
+    if(is_array($aData)){
+      return new $this->sModel($aData);
     }
     return NULL;
   }
@@ -45,14 +45,14 @@ class UtilisateursManager extends Model{
     $req->execute(array(
       ':role_code' => 'T'
     ));
-    $var = [];
-    while($data = $req->fetch(PDO::FETCH_ASSOC)){
+    $aVar = [];
+    while($aData = $req->fetch(PDO::FETCH_ASSOC)){
 
-      $var[] = new $this->sModel($data);
+      $aVar[] = new $this->sModel($aData);
     }
 
-    if(is_array($var)){
-      return $var;
+    if(is_array($aVar)){
+      return $aVar;
     }
     return NULL;
   }
@@ -63,9 +63,9 @@ class UtilisateursManager extends Model{
     $req->execute(array(
       ':JA_HASH' => $JA_HASH
     ));
-    $var = $req->fetch(PDO::FETCH_ASSOC);
+    $aData = $req->fetch(PDO::FETCH_ASSOC);
 
-    if($var['ROLE_R_CODE'] == 'T'){
+    if($aData['ROLE_R_CODE'] == 'T'){
       return true;
     }
     else{

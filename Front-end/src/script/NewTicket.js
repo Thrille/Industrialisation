@@ -1,6 +1,7 @@
 import Modal from "./Modal.js";
 import TicketForm from "./TicketForm.js";
 
+// class de création d'un nouveau ticket
 class NewTicket {
 
     parentNode;
@@ -10,6 +11,7 @@ class NewTicket {
     constructor() {
         this.parentNode = document.getElementById("new-ticket");
 
+        // on associe les évenemnts
         this.bindEvent();
     }
 
@@ -17,14 +19,21 @@ class NewTicket {
         this.parentNode.addEventListener("click", this.onClickEvent.bind(this));
     }
 
+    // lorsque on clique sur le bouton "Créer un ticket"
     onClickEvent() {
 
-        this.form = new TicketForm();
+        
 
+        // on lance la modale de création avec le formulaire passé en paramètre
         this.modal = new Modal({
             title: "Création d'un ticket",
-            element: this.form.render()
+            element: document.createTextNode("")
         });
+
+        // on génère le formulaire de création de ticket
+        this.form = new TicketForm({modal: this.modal});
+
+        this.modal.element = this.form.render()
 
         this.modal.open();
     }

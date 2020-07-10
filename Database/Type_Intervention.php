@@ -3,16 +3,16 @@ require_once __ROOT__.'/Database/Entity.php';
 class Type_Intervention extends Entity{
   protected $TI_CODE, $TI_LIBELLE;
 
-  public function __construct(array $data){
-    $this->hydrate($data);
+  public function __construct(array $aData){
+    $this->hydrate($aData);
   }
 
   //hydratation
-  public function hydrate(array $data){
-    foreach($data as $key => $value){
-      $method = 'set'.ucfirst($key);
-      if(method_exists($this, $method)){
-        $this->$method($value);
+  public function hydrate(array $aData){
+    foreach($aData as $sKey => $sValue){
+      $sMethod = 'set'.ucfirst($sKey);
+      if(method_exists($this, $sMethod)){
+        $this->$sMethod($sValue);
       }
     }
   }

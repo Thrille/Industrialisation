@@ -1,3 +1,4 @@
+// classe permettant de gérer un ticket
 class Ticket {
 
     id;
@@ -24,6 +25,7 @@ class Ticket {
         this.deviceName = deviceName;
     }
 
+    // fonction de tri des interventions par date
     sortInterventionByDate() {
 
         this.interventions.sort((a, b) => {
@@ -31,6 +33,7 @@ class Ticket {
         })
     }
 
+    // retourne l'intervention de création si elle existe
     getEntryIntervention() {
         let it = this.interventions.find(i => {
             return (i.type === 1)
@@ -39,18 +42,21 @@ class Ticket {
         return it
     }
 
+    // retourne l'intervention de la personne qui doit résoudre si elle existe
     getResolveIntervention() {
         return this.interventions.find(i => {
             return (i.type === 3)
         })
     }
 
+    // retourne l'intervention de la résolution si elle existe
     getResolvedIntevention() {
         return this.interventions.find(i => {
             return (i.type === 4)
         })
     }
 
+    // retourne l'intervention de cloture du ticket
     getCloseIntervention() {
         return this.interventions.find(i => {
             return (i.type === 6)

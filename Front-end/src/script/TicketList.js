@@ -3,6 +3,7 @@ import Ticket from "./Ticket.js";
 import TicketElement from './TicketElement.js';
 import Intervention from "./Intervention.js";
 
+// calsse permettant de générer la liste des tickets
 class TicketList {
 
     parentNode;
@@ -19,6 +20,7 @@ class TicketList {
         this.apiAdapter = new APIAdapter();
     }
 
+    // chargement des donnes via l'APIAdapter
     loadData() {
 
         this.tickets = [];
@@ -58,10 +60,12 @@ class TicketList {
         });
     }
 
+    // rendu de la liste
     render() {
         this.parentNode.appendChild(this.wrapperNode);
     }
 
+    // ajout des tickets à la liste
     renderTickets() {
         this.tickets.forEach(ticket => {
 

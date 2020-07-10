@@ -1,3 +1,5 @@
+
+// classe permettant de gérer un materiel
 class Device {
     constructor({id, name}) {
         this.id = id
