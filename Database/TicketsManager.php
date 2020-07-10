@@ -151,14 +151,14 @@ class TicketsManager extends Model{
         'utilisateurId'=> $aData2['UTILISATEUR_U_ID'],
         'ticketId' => $aData['ID'],
         'typeInterventionCode' => 1,
-        'date' => now()
+        'date' => date('Y-m-d')
       );
       //paramètres pour création intervention 2
       $aParam3 = array(
         'utilisateurId'=> $aParam['technicianId'],
         'ticketId' => $aData['ID'],
         'typeInterventionCode' => 2,
-        'date' => now()
+        'date' => date('Y-m-d')
       );
       //création des interventions
       $this->createIntervention($aParam2);
