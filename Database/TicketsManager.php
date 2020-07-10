@@ -134,12 +134,21 @@ class TicketsManager extends Model{
     ));
     if($iCount != 0){
 
+      //récupère l'id du dernier ticket créé
       $req = $this->getBdd()->prepare('SELECT LAST_INSERT_ID() AS ID;');
       $req->execute();
       $aData = $req->fetch(PDO::FETCH_ASSOC);
+
+      //récupère l'id de l'utilisateur associé au token de aParam
+      $req2 = $this->getBdd()->prepare('SELECT UTILISATEUR_U_ID FROM JETON_AUTHENTIFICATION WHERE JA_HASH = :hash;');
+      $req2->execute(array(
+        ':hash' => $aparam['token']
+      ));
+      $aData2 = req2->fetch(PDO::FETCH_ASSOC);
+      
       //paramètres pour creation intervention 1
       $aParam2 = array(
-        'utilisateurId'=> $aParam['createurId'],
+        'utilisateurId'=> $aData2['UTILISATEUR_U_ID'],
         'ticketId' => $aData['ID'],
         'typeInterventionCode' => 1,
         'date' => now()
